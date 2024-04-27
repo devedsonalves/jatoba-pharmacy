@@ -14,12 +14,12 @@ export const useCartStore = create<CartStore>((set, get) => {
     addToCart: (item) => set((state) => ({ cart: [ ...state.cart, item ] })),
     removeToCart: (item) => set((state) => ({ cart: state.cart.filter((product) => product.id !== item.id) })),
     totalPrice: () => {
-      const cartItems: ProductInCartType[] = get().cart;
-      let total = 0;
+      const cartItems: ProductInCartType[] = get().cart
+      let total = 0
       cartItems.forEach((item) => {
-        total += item.price * item.amount;
-      });
-      return total;
+        total += item.price * item.amount
+      })
+      return total
     }
   }
 })

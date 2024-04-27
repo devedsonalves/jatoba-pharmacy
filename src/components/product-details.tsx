@@ -3,17 +3,23 @@
 import { useCartStore } from "@/store/CartStore"
 import { ProductType } from "@/types/product"
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline"
-import { Dispatch, SetStateAction, useState } from "react"
+import { Dispatch, FormEvent, SetStateAction, useState } from "react"
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function ProductDetails({ product, setOpenProduct }: { product: ProductType, setOpenProduct: Dispatch<SetStateAction<ProductType | null>>}) {
+export default function ProductDetails ({ 
+  product, 
+  setOpenProduct 
+} : { 
+  product: ProductType, 
+  setOpenProduct: Dispatch<SetStateAction<ProductType | null>>
+}) {
   const [amount, setAmount] = useState(1)
   const { addToCart } = useCartStore()
 
-  const handleSubmit = (event: FormDataEvent) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
     
     addToCart({

@@ -12,6 +12,7 @@ import formatCurrency from "@/utils/formatCurrency";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import ProductDetails from "@/components/product-details";
 import { ProductType } from "@/types/product";
+import Footer from "@/components/footer";
 
 export default function HomePage() {
   const [openMenu, setOpenMenu] = useState(false)
@@ -19,7 +20,7 @@ export default function HomePage() {
   const [openChat, setOpenChat] = useState(false)
   const [openProduct, setOpenProduct] = useState<ProductType | null>(null)
 
-  const { cart, addToCart } = useCartStore()
+  const { addToCart } = useCartStore()
 
   return (
     <>
@@ -46,17 +47,15 @@ export default function HomePage() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="text-white" />
-              <CarouselNext className="text-white"/>
             </Carousel>
           </div>
 
           <hr className="mb-12 mx-4" />
 
-          <div className="grid grid-cols-1 px-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            <h1 className="text-2xl font-bold tracking-wide flex justify-center items-center">💊 Ofertas da Semana</h1>
+          <h1 className="text-2xl font-bold tracking-wide flex justify-center items-center mb-12">💊 Ofertas da Semana</h1>
+          <div className="grid grid-cols-1 px-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
             {products.map((product) => (
-              <div>
+              <>
                 <button key={product.id} onClick={() => setOpenProduct(product)} className="group">
                   <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-zinc-200 xl:aspect-h-8 xl:aspect-w-7">
                     <img
@@ -65,8 +64,8 @@ export default function HomePage() {
                       className="h-full w-full object-cover object-center group-hover:opacity-75"
                       />
                   </div>
-                  <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-                  <p className="mt-1 text-lg font-medium text-gray-900">{formatCurrency(product.price, "BRL")}</p>
+                  <h3 className="w-full mt-4 text-sm text-gray-700">{product.name}</h3>
+                  <p className="w-full mt-1 text-lg font-medium text-gray-900">{formatCurrency(product.price, "BRL")}</p>
                 </button>
                 <button
                   onClick={() => {
@@ -80,10 +79,11 @@ export default function HomePage() {
                       imageAlt: product.imageAlt
                     })
                   }}           
-                  className="flex justify-center items-center uppercase bg-amaranth font-bold text-white text-lg tracking-wider py-3 mt-2 w-full rounded-[3px]">
-                  Adicionar ao Carrinho 🛒
+                  className="flex justify-center items-center uppercase bg-amaranth font-bold text-white text-lg tracking-wide py-2 w-full rounded-[4px]">
+                  <p>Adicionar ao Carrinho</p>
+                  <span className="ml-4">🛒</span>
                 </button>
-              </div>
+              </>
             ))}
           </div>
         </div>
@@ -108,6 +108,8 @@ export default function HomePage() {
           <ProductDetails product={openProduct} setOpenProduct={setOpenProduct} />
         </div>
       )}
+
+      <Footer />
     </>
   );
 }
