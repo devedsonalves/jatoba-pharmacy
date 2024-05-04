@@ -15,6 +15,7 @@ import { ProductType } from "@/types/product";
 
 import formatCurrency from "@/utils/format-currency";
 import ProductDetails from "@/components/product-details";
+import Image from "next/image";
 
 export default function HomePage() {
   const [openMenu, setOpenMenu] = useState(false)
@@ -41,7 +42,7 @@ export default function HomePage() {
                 {banners.map((banner, index) => (
                   <CarouselItem key={index}>
                     <div className="p-2">
-                      <img 
+                      <Image 
                         className="w-full rounded-xl "
                         src={banner.imageSrc}
                         alt={banner.imageAlt} />
@@ -60,7 +61,7 @@ export default function HomePage() {
               <div>
                 <button key={index} onClick={() => setOpenProduct(product)} className="group">
                   <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-zinc-200 xl:aspect-h-8 xl:aspect-w-7">
-                    <img
+                    <Image
                       src={product.imageSrc}
                       alt={product.imageAlt}
                       className="h-full w-full object-cover object-center group-hover:opacity-75"

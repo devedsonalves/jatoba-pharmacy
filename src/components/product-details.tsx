@@ -41,7 +41,7 @@ export default function ProductDetails ({
       <div>
         <div className="mx-auto max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <div className="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg">
-            <img
+            <Image
               src={product.imageSrc}
               alt={product.imageAlt}
               className="h-full w-full object-cover object-center"

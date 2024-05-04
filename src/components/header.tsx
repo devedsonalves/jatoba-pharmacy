@@ -5,6 +5,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Cart from "./cart";
 import { useCartStore } from "@/store/cart-store";
+import Image from "next/image";
 
 const navigation = {
   pages: [
@@ -117,7 +118,7 @@ export default function Header({ props }: { props: HeaderProps }) {
                 <div className="ml-4 flex lg:ml-0">
                   <a href="#">
                     <span className="sr-only">Your Company</span>
-                    <img
+                    <Image
                       className="h-16 w-auto rounded-full"
                       src="./LOGO.png"
                       alt=""

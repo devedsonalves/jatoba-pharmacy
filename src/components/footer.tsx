@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <div className="bg-white dark:bg-gray-800 mt-12 max-w-7xl">
@@ -78,7 +80,7 @@ export default function Footer() {
           
           <div className="text-center">
               <a href="#" className="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
-                  <img src="LOGO.png" className="h-14 rounded-full sm:h-9" alt="Logo" />
+                  <Image src="LOGO.png" className="h-14 rounded-full sm:h-9" alt="Logo" />
                   <p className="ml-4 text-xl">Farmácia Jatobá</p>
               </a>
               <span className="block text-sm text-center text-gray-500 dark:text-gray-400">© FarmaciaJatoba™. Todos os direitos reservados.
