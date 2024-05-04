@@ -3,6 +3,7 @@
 import { useCartStore } from "@/store/cart-store"
 import { ProductType } from "@/types/product"
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline"
+import Image from "next/image"
 import { Dispatch, FormEvent, SetStateAction, useState } from "react"
 
 function classNames(...classes: string[]) {
