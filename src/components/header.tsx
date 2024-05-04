@@ -4,17 +4,13 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Cart from "./cart";
-import { useCartStore } from "@/store/CartStore";
+import { useCartStore } from "@/store/cart-store";
 
 const navigation = {
   pages: [
     { name: 'Politica e privacidade', href: '#' },
     { name: 'Sobre nós', href: '#' },
   ],
-}
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
 }
 
 interface HeaderProps {
@@ -27,14 +23,14 @@ interface HeaderProps {
 export default function Header({ props }: { props: HeaderProps }) {
   const { openCart, openMenu, setOpenCart, setOpenMenu } = props
 
-  const { cart, removeToCart } = useCartStore()
+  const { cart } = useCartStore()
 
   return (
     <div className="bg-white">
       <Cart props={{ open: openCart, setOpen: setOpenCart }}/>
 
       <Transition.Root show={openMenu} as={Fragment}>
-        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpenMenu}>
+        <Dialog as="div" className="relative lg:hidden z-[1000]" onClose={setOpenMenu}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -99,13 +95,13 @@ export default function Header({ props }: { props: HeaderProps }) {
         </Dialog>
       </Transition.Root>
 
-      <header className="relative bg-white">
+      <header className="fixed w-screen bg-white z-[1000]">
         <p className="flex h-10 items-center justify-center bg-amaranth px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           10% DE DESCONTO NO PIX
         </p>
 
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="w-full h-20 border-b border-gray-200">
+            <div className="w-full h-20 border-b border-gray-200">
 
             <div className="h-full flex justify-center items-center">
                 <button

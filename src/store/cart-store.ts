@@ -11,8 +11,12 @@ type CartStore = {
 export const useCartStore = create<CartStore>((set, get) => {
   return {
     cart: [],
-    addToCart: (item) => set((state) => ({ cart: [ ...state.cart, item ] })),
-    removeToCart: (item) => set((state) => ({ cart: state.cart.filter((product) => product.id !== item.id) })),
+    addToCart: (item) => {
+      set((state) => ({ cart: [ ...state.cart, item ] }))
+    },
+    removeToCart: (item) => {
+      set((state) => ({ cart: state.cart.filter((product) => product.id !== item.id) }))
+    },
     totalPrice: () => {
       const cartItems: ProductInCartType[] = get().cart
       let total = 0

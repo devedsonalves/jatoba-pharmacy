@@ -1,6 +1,6 @@
 "use client"
 
-import { useCartStore } from "@/store/CartStore"
+import { useCartStore } from "@/store/cart-store"
 import { ProductType } from "@/types/product"
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline"
 import { Dispatch, FormEvent, SetStateAction, useState } from "react"

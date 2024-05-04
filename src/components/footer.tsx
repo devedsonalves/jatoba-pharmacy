@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <div className="bg-white dark:bg-gray-800 mt-12">
-      <hr className="w-screen my-12 border-gray-200 sm:mx-auto dark:border-gray-700" />
+    <div className="bg-white dark:bg-gray-800 mt-12 max-w-7xl">
+      <hr className="w-full border-gray-200 dark:border-gray-400" />
       <div className="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
           <div className="w-full grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-4 justify-items-center sm:justify-items-center">
               <div>
@@ -74,7 +74,7 @@ export default function Footer() {
               </div>
           </div>
           
-          <hr className="w-screen my-12 border-gray-200 sm:mx-auto dark:border-gray-700" />
+          <hr className="w-full my-12 border-gray-200 sm:mx-auto dark:border-gray-400" />
           
           <div className="text-center">
               <a href="#" className="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">

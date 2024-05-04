@@ -3,8 +3,8 @@
 import { Dispatch, Fragment, SetStateAction, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { useCartStore } from '@/store/CartStore'
-import formatCurrency from '@/utils/formatCurrency'
+import { useCartStore } from '@/store/cart-store'
+import formatCurrency from '@/utils/format-currency'
 
 interface CartProps {
   open: boolean
@@ -18,7 +18,7 @@ export default function Cart({ props }: { props: CartProps }) {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-[1000]" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -61,47 +61,56 @@ export default function Cart({ props }: { props: CartProps }) {
                         </div>
                       </div>
 
-                      <div className="mt-8">
-                        <div className="flow-root">
-                          <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {cart?.map((product) => (
-                              <li key={product.id} className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                  <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
-                                    className="h-full w-full object-cover object-center"
-                                  />
-                                </div>
-
-                                <div className="ml-4 flex flex-1 flex-col">
-                                  <div>
-                                    <div className="flex justify-between text-base font-medium text-gray-900">
-                                      <h3>
-                                        <a href={product.href}>{product.name}</a>
-                                      </h3>
-                                      <p className="ml-4">{formatCurrency((product.price * product.amount), "BRL")}</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-500">Quantidade: {product.amount}</p>
-
-                                    <div className="flex">
-                                      <button
-                                        onClick={() => removeToCart(product)}
-                                        type="button"
-                                        className="font-medium text-amaranth hover:text-red-700"
-                                      >
-                                        Remover
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </li>
-                            ))}
-                          </ul>
+                      {cart.length == 0 ? (
+                        <div className="h-full flex justify-center items-center overflow-y-hidden">
+                          <span>Carrinho vazio...</span>
                         </div>
-                      </div>
+                      ) : (
+                        <>
+                          <div className="mt-8">
+                            <div className="flow-root">
+                              <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                {cart?.map((product) => (
+                                  <li key={product.id} className="flex py-6">
+                                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                      <img
+                                        src={product.imageSrc}
+                                        alt={product.imageAlt}
+                                        className="h-full w-full object-cover object-center"
+                                      />
+                                    </div>
+
+                                    <div className="ml-4 flex flex-1 flex-col">
+                                      <div>
+                                        <div className="flex justify-between text-base font-medium text-gray-900">
+                                          <h3>
+                                            <a href={product.href}>{product.name}</a>
+                                          </h3>
+                                          <p className="ml-4">{formatCurrency((product.price * product.amount), "BRL")}</p>
+                                        </div>
+                                      </div>
+                                      <div className="flex flex-1 items-end justify-between text-sm">
+                                        <p className="text-gray-500">Quantidade: {product.amount}</p>
+
+                                        <div className="flex">
+                                          <button
+                                            onClick={() => removeToCart(product)}
+                                            type="button"
+                                            className="font-medium text-amaranth hover:text-red-700"
+                                          >
+                                            Remover
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </>
+                      )}
+
                     </div>
 
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">

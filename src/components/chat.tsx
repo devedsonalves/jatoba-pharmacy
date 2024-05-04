@@ -13,7 +13,7 @@ export default function Chat({ props }: { props: ChatProps}) {
   const { setOpenChat } = props
 
   return (
-    <div className="fixed bg-white h-screen w-screen top-0 left-0">
+    <div className="fixed bg-white h-screen w-screen top-0 left-0 z-[1000]">
       <div className="bg-amaranth flex justify-between items-center py-4 px-4">
         <button onClick={() => setOpenChat(false)} className="p">
           <ArrowLeftIcon className="h-8 w-8 text-white" />
