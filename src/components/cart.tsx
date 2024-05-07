@@ -5,6 +5,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useCartStore } from '@/store/cart-store'
 import formatCurrency from '@/utils/format-currency'
+import Image from 'next/image'
 
 interface CartProps {
   open: boolean
@@ -70,10 +71,11 @@ export default function Cart({ props }: { props: CartProps }) {
                           <div className="mt-8">
                             <div className="flow-root">
                               <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                {cart?.map((product) => (
-                                  <li key={product.id} className="flex py-6">
+                                {cart?.map((product, index) => (
+                                  <li key={index} className="flex py-6">
                                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                      <img
+                                      <Image
+                                        layout="fill"
                                         src={product.imageSrc}
                                         alt={product.imageAlt}
                                         className="h-full w-full object-cover object-center"

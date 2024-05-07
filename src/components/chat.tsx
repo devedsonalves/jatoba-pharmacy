@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction } from "react"
 import { ArrowLeftIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline'
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
+import Image from "next/image"
 
 interface ChatProps {
   setOpenChat: Dispatch<SetStateAction<boolean>>
@@ -31,7 +32,7 @@ export default function Chat({ props }: { props: ChatProps}) {
             </div>
             <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">Olá cliente, informe seu problema ou dúvida, e retornaremos o mais breve possível.</p>
         </div>
-        <img className="w-12 h-12 rounded-full" src="./LOGO.png" alt="Jese image" />
+        <Image layout="fill" className="w-12 h-12 rounded-full" src="./LOGO.png" alt="Jese image" />
       </div>
 
       <div className="fixed w-screen bottom-0 left-0 py-4 px-2 bg-gray-300 flex justify-between items-center gap-4">
