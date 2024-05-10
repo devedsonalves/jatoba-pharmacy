@@ -37,7 +37,7 @@ export default function ProductDetails ({
 
 
   return (
-    <div className="bg-white">
+    <div className="bg-white pt-20">
       <div>
         <div className="mx-auto max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <div className="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg">
@@ -61,16 +61,16 @@ export default function ProductDetails ({
             <form onSubmit={handleSubmit} className="mt-4">
               <button
                 type="submit"
-                className="flex w-full items-center justify-center rounded-md border border-transparent bg-amaranth px-8 py-3 text-xl font-bold text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="flex w-full items-center justify-center rounded-lg border border-transparent bg-amaranth py-2 text-xl font-bold text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                 >
                 ADICIONAR AO CARRINHO 🛒
               </button>
               <div className="mt-4 text-white w-full flex justify-center items-center gap-2">
-                <button onClick={() => amount > 1 && setAmount(amount - 1)} type="button" className="bg-amaranth h-14 w-14 rounded-full flex justify-center items-center">
+                <button onClick={() => amount > 1 && setAmount(amount - 1)} type="button" className="bg-amaranth h-12 w-12 rounded-full flex justify-center items-center">
                   <MinusIcon className="h-8 w-8" />
                 </button>
-                <span className="bg-amaranth h-14 w-20 flex justify-center items-center text-2xl font-bold rounded-xl">{amount}</span>
-                <button onClick={() => setAmount(amount + 1)} type="button" className="bg-amaranth h-14 w-14 rounded-full flex justify-center items-center">
+                <span className="bg-amaranth h-12 w-16 flex justify-center items-center text-2xl font-bold rounded-xl">{amount}</span>
+                <button onClick={() => setAmount(amount + 1)} type="button" className="bg-amaranth h-12 w-12 rounded-full flex justify-center items-center">
                   <PlusIcon className="h-8 w-8" />
                 </button>
               </div> 
