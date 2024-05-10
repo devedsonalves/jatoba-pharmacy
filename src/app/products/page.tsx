@@ -2,11 +2,14 @@
 
 import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { ChatBubbleOvalLeftEllipsisIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import Header from '@/components/header'
 import { ProductType } from '@/types/product'
 import Chat from '@/components/chat'
+import { products } from '@/data/products'
+import formatCurrency from '@/utils/format-currency'
+import { useCartStore } from '@/store/cart-store'
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -48,11 +51,13 @@ export default function Example() {
   const [openChat, setOpenChat] = useState(false)
   const [openProduct, setOpenProduct] = useState<ProductType | null>(null)
 
+  const { addToCart } = useCartStore()
+
   return (
     <>
       <Header props={{ openCart, setOpenCart, openMenu, setOpenMenu }} />
 
-      <div className="bg-white pt-16">
+      <div className="bg-white pt-10">
         <div>
           {/* Mobile filter dialog */}
           <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -155,14 +160,12 @@ export default function Example() {
           </Transition.Root>
 
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-              <h1 className="text-3xl font-bold font-sans text-gray-900">💊 Produtos</h1>
-
+            <div className="flex items-center justify-end pb-6 pt-24">
               <div className="flex items-center">
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                      Sort
+                      Ordenar
                       <ChevronDownIcon
                         className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                         aria-hidden="true"
@@ -202,10 +205,6 @@ export default function Example() {
                   </Transition>
                 </Menu>
 
-                <button type="button" className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
-                  <span className="sr-only">View grid</span>
-                  <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
-                </button>
                 <button
                   type="button"
                   className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
@@ -280,7 +279,51 @@ export default function Example() {
 
                 {/* Product grid */}
                 <div className="lg:col-span-3">
-                  {/* Your content */}
+                  <section>
+                    <div className="mx-auto max-w-screen-xl px-4 pb-4 sm:px-6 sm:pb-8 lg:px-8">
+                      <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                          {products.map((product, index) => (
+                            <li key={index}>
+                              <a href={`/products/${product.id}`} className="group block overflow-hidden">
+                                <img
+                                  src={product.imageSrc}
+                                  alt={product.imageAlt}
+                                  className="h-[350px] sm:h-[250px] w-full object-cover sm:object-contain transition duration-500 group-hover:scale-105"
+                                />
+    
+                                <div className="sm:h-28 relative bg-white pt-3 flex flex-col justify-between">
+                                  <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                                    {product.name}
+                                  </h3>
+    
+                                  <p className="mt-2">
+                                    <span className="sr-only"> Regular Price </span>
+    
+                                    <span className="tracking-wider text-gray-900">{formatCurrency(product.price, "BRL")}</span>
+                                  </p>
+                                </div>
+                              </a>
+                              <button
+                                onClick={() => {
+                                  addToCart({
+                                    id: product.id,
+                                    name: product.name,
+                                    href: product.href,
+                                    price: product.price,
+                                    amount: 1,
+                                    imageSrc: product.imageSrc,
+                                    imageAlt: product.imageAlt
+                                  })
+                                }}           
+                                className="mt-2 flex justify-center items-center uppercase bg-amaranth font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]">
+                                <p className="text-md sm:text-xs sm:  px-1">Adicionar ao Carrinho</p>
+                                <span className="ml-4 sm:ml-0 sm:hidden">🛒</span>
+                              </button>
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+                  </section>
                 </div>
               </div>
             </section>
@@ -288,7 +331,7 @@ export default function Example() {
         </div>
       </div>
 
-      <button onClick={() => setOpenChat(true)} className="fixed bottom-4 right-4 p-2 bg-amaranth hover:bg-red-600 border border-white rounded-full flex justify-center items-center sm:hidden">
+      <button onClick={() => setOpenChat(true)} className="fixed bottom-4 right-4 p-3 bg-amaranth hover:bg-red-600 border border-white rounded-full flex justify-center items-center sm:hidden">
         <ChatBubbleOvalLeftEllipsisIcon className="text-white h-8 w-8"/>            
       </button>
 
