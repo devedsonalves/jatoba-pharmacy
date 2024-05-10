@@ -26,12 +26,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Header props={{
-        openMenu, 
-        setOpenMenu,
-        openCart,
-        setOpenCart
-      }} />
+      <Header props={{ openMenu, setOpenMenu, openCart, setOpenCart }} />
 
       <div className="bg-white">
         <div className="mx-auto max-w-2xl pt-32 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -91,7 +86,7 @@ export default function HomePage() {
                   }}           
                   className="mt-2 flex justify-center items-center uppercase bg-amaranth font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]">
                   <p className="text-md sm:text-xs sm:  px-1">Adicionar ao Carrinho</p>
-                  <span className="ml-4 sm:ml-0 sm:hidden">🛒</span>
+                  <span className="ml-2 sm:hidden">🛒</span>
                 </button>
               </li> 
             ))}

@@ -63,7 +63,7 @@ export default function Cart({ props }: { props: CartProps }) {
 
                       {cart.length == 0 ? (
                         <div className="h-full flex justify-center items-center overflow-y-hidden">
-                          <span>Carrinho vazio...</span>
+                          <span className="animate-pulse">Carrinho vazio...</span>
                         </div>
                       ) : (
                         <>

@@ -1,21 +1,21 @@
 export default function Footer() {
   return (
-    <footer className="bg-white mt-12 lg:grid lg:grid-cols-5 w-screen ">
-      <div className="block lg:col-span-2 lg:h-full">
+    <footer className="w-screen mt-16 sm:mt-24 sm:grid sm:grid-cols-2 md:grid-cols-5 sm:px-32 md:px-64">
+      <div className="lg:col-span-2">
         <img
           src="https://scontent.fjdo1-2.fna.fbcdn.net/v/t1.6435-9/122885831_3502091099881234_53342234094039433_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEMJZJLv4emcMDpW6-Z5kWjtGNferejRBa0Y196t6NEFuM94CNF_KMKZ-1x1ZgeqFGobRomWfusKkDP9FylHvzZ&_nc_ohc=31lNRoSOwesQ7kNvgHtTwem&_nc_ht=scontent.fjdo1-2.fna&oh=00_AYC0casiiiBMhdV1_srA3guSsGLyVQLfgAMEg0cKFRoA2g&oe=66659E8E"
           alt=""
-          className="inset-0 h-fit w-full object-fill sm:object-contain"
+          className="inset-0 h-fit sm:w-96 w-full object-fill"
         />
       </div>
-
+      
       <div className="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
             <p>
               <span className="text-xs uppercase tracking-wide text-gray-500"> Ligue </span>
 
-              <a href="#" className="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl">
+              <a href="#" className="block text-2xl sm:text-xl font-medium text-gray-900 hover:opacity-75">
                 (83) 3421-6689
               </a>
             </p>
@@ -81,8 +81,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
+          <div className="w-full flex flex-col sm:flex-row justify-between items-baseline">
+            <div className="pt-4 sm:pt-0 sm:text-center">
               <p className="font-medium text-gray-900">Empresa</p>
 
               <ul className="mt-6 space-y-4 text-sm">
@@ -104,7 +104,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="pt-4 sm:pt-0">
+            <div className="pt-12 sm:pt-4 sm:text-center">
               <p className="font-medium text-gray-900">Conta</p>
 
               <ul className="mt-6 space-y-4 text-sm">
