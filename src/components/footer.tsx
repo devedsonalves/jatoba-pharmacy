@@ -13,10 +13,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
             <p>
-              <span className="text-xs uppercase tracking-wide text-gray-500"> Call us </span>
+              <span className="text-xs uppercase tracking-wide text-gray-500"> Ligue </span>
 
               <a href="#" className="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl">
-                0123456789
+                (83) 3421-6689
               </a>
             </p>
 

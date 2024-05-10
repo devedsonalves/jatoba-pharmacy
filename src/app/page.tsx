@@ -15,7 +15,6 @@ import { ProductType } from "@/types/product";
 
 import formatCurrency from "@/utils/format-currency";
 import ProductDetails from "@/components/product-details";
-import Link from "next/link";
 
 export default function HomePage() {
   const [openMenu, setOpenMenu] = useState(false)
@@ -59,14 +58,14 @@ export default function HomePage() {
           <ul className="grid grid-cols-1 px-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
             {products.map((product, index) => (
               <li key={index}>
-                <Link href={`/products/${product.id}`} className="group block overflow-hidden">
+                <a href={`/products/${product.id}`} className="group block overflow-hidden">
                   <img
                     src={product.imageSrc}
                     alt={product.imageAlt}
-                    className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105"
+                    className="h-[350px] sm:h-[250px] w-full object-cover sm:object-contain transition duration-500 group-hover:scale-105"
                   />
 
-                  <div className="relative bg-white pt-3">
+                  <div className="sm:h-28 relative bg-white pt-3 flex flex-col justify-between">
                     <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
                       {product.name}
                     </h3>
@@ -77,7 +76,7 @@ export default function HomePage() {
                       <span className="tracking-wider text-gray-900">{formatCurrency(product.price, "BRL")}</span>
                     </p>
                   </div>
-                </Link>
+                </a>
                 <button
                   onClick={() => {
                     addToCart({
@@ -91,8 +90,8 @@ export default function HomePage() {
                     })
                   }}           
                   className="mt-2 flex justify-center items-center uppercase bg-amaranth font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]">
-                  <p className="text-md sm:text-sm">Adicionar ao Carrinho</p>
-                  <span className="ml-4 sm:ml-0">🛒</span>
+                  <p className="text-md sm:text-xs sm:  px-1">Adicionar ao Carrinho</p>
+                  <span className="ml-4 sm:ml-0 sm:hidden">🛒</span>
                 </button>
               </li> 
             ))}
