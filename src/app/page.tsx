@@ -15,7 +15,6 @@ import { ProductType } from "@/types/product";
 
 import formatCurrency from "@/utils/format-currency";
 import ProductDetails from "@/components/product-details";
-import Image from "next/image";
 
 export default function HomePage() {
   const [openMenu, setOpenMenu] = useState(false)
@@ -28,10 +27,10 @@ export default function HomePage() {
   return (
     <>
       <Header props={{
-        openMenu: openMenu, 
-        setOpenMenu: setOpenMenu,
-        openCart: openCart,
-        setOpenCart: setOpenCart,
+        openMenu, 
+        setOpenMenu,
+        openCart,
+        setOpenCart
       }} />
 
       <div className="bg-white">
@@ -42,8 +41,7 @@ export default function HomePage() {
                 {banners.map((banner, index) => (
                   <CarouselItem key={index}>
                     <div className="p-2">
-                      <Image
-                        layout="fill"
+                      <img
                         className="w-full rounded-xl "
                         src={banner.imageSrc}
                         alt={banner.imageAlt} />
@@ -56,14 +54,13 @@ export default function HomePage() {
 
           <hr className="mb-10 sm:mb-8" />
 
-          <h1 className="text-2xl font-bold tracking-wide flex justify-center items-center mb-12">💊 Ofertas da Semana</h1>
+          <span className="text-2xl font-bold font-sans tracking-wide flex justify-center items-center mb-12">💊 Ofertas da Semana</span>
           <div className="grid grid-cols-1 px-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
             {products.map((product, index) => (
               <div>
                 <button key={index} onClick={() => setOpenProduct(product)} className="group">
                   <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-zinc-200 xl:aspect-h-8 xl:aspect-w-7">
-                    <Image
-                      layout="fill"
+                    <img
                       src={product.imageSrc}
                       alt={product.imageAlt}
                       className="h-full w-full object-cover object-center group-hover:opacity-75"
@@ -84,7 +81,7 @@ export default function HomePage() {
                       imageAlt: product.imageAlt
                     })
                   }}           
-                  className="flex justify-center items-center uppercase bg-amaranth font-bold text-white text-lg tracking-wide py-2 w-full rounded-[4px]">
+                  className="mt-2 flex justify-center items-center uppercase bg-amaranth font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]">
                   <p className="text-md sm:text-sm">Adicionar ao Carrinho</p>
                   <span className="ml-4 sm:ml-0">🛒</span>
                 </button>

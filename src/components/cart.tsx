@@ -1,25 +1,24 @@
 "use client"
 
-import { Dispatch, Fragment, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, Fragment, SetStateAction } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useCartStore } from '@/store/cart-store'
 import formatCurrency from '@/utils/format-currency'
-import Image from 'next/image'
 
 interface CartProps {
-  open: boolean
-  setOpen: Dispatch<SetStateAction<boolean>>
+  openCart: boolean
+  setOpenCart: Dispatch<SetStateAction<boolean>>
 }
 
 export default function Cart({ props }: { props: CartProps }) {
-  const { open, setOpen } = props
+  const { openCart, setOpenCart } = props
 
   const { cart, removeToCart, totalPrice } = useCartStore()
 
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-[1000]" onClose={setOpen}>
+    <Transition.Root show={openCart} as={Fragment}>
+      <Dialog as="div" className="relative z-[1000]" onClose={setOpenCart}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -53,7 +52,7 @@ export default function Cart({ props }: { props: CartProps }) {
                           <button
                             type="button"
                             className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
-                            onClick={() => setOpen(false)}
+                            onClick={() => setOpenCart(false)}
                           >
                             <span className="absolute -inset-0.5" />
                             <span className="sr-only">Close panel</span>
@@ -74,8 +73,7 @@ export default function Cart({ props }: { props: CartProps }) {
                                 {cart?.map((product, index) => (
                                   <li key={index} className="flex py-6">
                                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                      <Image
-                                        layout="fill"
+                                      <img
                                         src={product.imageSrc}
                                         alt={product.imageAlt}
                                         className="h-full w-full object-cover object-center"
@@ -134,7 +132,7 @@ export default function Cart({ props }: { props: CartProps }) {
                           <button
                             type="button"
                             className="font-medium text-amaranth hover:text-red-700"
-                            onClick={() => setOpen(false)}
+                            onClick={() => setOpenCart(false)}
                           >
                             Continue Comprando
                             <span aria-hidden="true"> &rarr;</span>

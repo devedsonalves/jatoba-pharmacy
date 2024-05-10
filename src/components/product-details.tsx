@@ -3,7 +3,6 @@
 import { useCartStore } from "@/store/cart-store"
 import { ProductType } from "@/types/product"
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline"
-import Image from "next/image"
 import { Dispatch, FormEvent, SetStateAction, useState } from "react"
 
 function classNames(...classes: string[]) {
@@ -42,8 +41,7 @@ export default function ProductDetails ({
       <div>
         <div className="mx-auto max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <div className="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg">
-            <Image
-              layout="fill"
+            <img
               src={product.imageSrc}
               alt={product.imageAlt}
               className="h-full w-full object-cover object-center"

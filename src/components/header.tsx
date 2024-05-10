@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
@@ -27,7 +27,7 @@ export default function Header({ props }: { props: HeaderProps }) {
 
   return (
     <div className="bg-white">
-      <Cart props={{ open: openCart, setOpen: setOpenCart }}/>
+      <Cart props={{ openCart, setOpenCart }}/>
 
       <Transition.Root show={openMenu} as={Fragment}>
         <Dialog as="div" className="relative lg:hidden z-[1000]" onClose={setOpenMenu}>
@@ -115,10 +115,9 @@ export default function Header({ props }: { props: HeaderProps }) {
                 </button>
 
                 <div className="ml-4 flex lg:ml-0">
-                  <a href="#">
+                  <a href="/">
                     <span className="sr-only">Your Company</span>
-                    <Image
-                      layout="fill"
+                    <img
                       className="h-16 w-auto rounded-full"
                       src="./LOGO.png"
                       alt=""
