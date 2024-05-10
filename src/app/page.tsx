@@ -91,8 +91,8 @@ export default function HomePage() {
         </div>
       </div>
 
-      <button onClick={() => setOpenChat(true)} className="fixed bottom-4 right-4 p-3 bg-amaranth hover:bg-red-600 border border-white rounded-full flex justify-center items-center sm:hidden">
-        <ChatBubbleOvalLeftEllipsisIcon className="text-white h-10 w-10"/>            
+      <button onClick={() => setOpenChat(true)} className="fixed bottom-4 right-4 p-2 bg-amaranth hover:bg-red-600 border border-white rounded-full flex justify-center items-center sm:hidden">
+        <ChatBubbleOvalLeftEllipsisIcon className="text-white h-8 w-8"/>            
       </button>
           
       {openChat && (

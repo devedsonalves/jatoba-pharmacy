@@ -24,38 +24,14 @@ const subCategories = [
 ]
 const filters = [
   {
-    id: 'color',
-    name: 'Color',
-    options: [
-      { value: 'white', label: 'White', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: true },
-      { value: 'brown', label: 'Brown', checked: false },
-      { value: 'green', label: 'Green', checked: false },
-      { value: 'purple', label: 'Purple', checked: false },
-    ],
-  },
-  {
     id: 'category',
-    name: 'Category',
+    name: 'Categoria',
     options: [
       { value: 'new-arrivals', label: 'New Arrivals', checked: false },
       { value: 'sale', label: 'Sale', checked: false },
       { value: 'travel', label: 'Travel', checked: true },
       { value: 'organization', label: 'Organization', checked: false },
       { value: 'accessories', label: 'Accessories', checked: false },
-    ],
-  },
-  {
-    id: 'size',
-    name: 'Size',
-    options: [
-      { value: '2l', label: '2L', checked: false },
-      { value: '6l', label: '6L', checked: false },
-      { value: '12l', label: '12L', checked: false },
-      { value: '18l', label: '18L', checked: false },
-      { value: '20l', label: '20L', checked: false },
-      { value: '40l', label: '40L', checked: true },
     ],
   },
 ]
@@ -311,6 +287,10 @@ export default function Example() {
           </main>
         </div>
       </div>
+
+      <button onClick={() => setOpenChat(true)} className="fixed bottom-4 right-4 p-2 bg-amaranth hover:bg-red-600 border border-white rounded-full flex justify-center items-center sm:hidden">
+        <ChatBubbleOvalLeftEllipsisIcon className="text-white h-8 w-8"/>            
+      </button>
 
       {openChat && (
         <Chat props={{ setOpenChat }} />
