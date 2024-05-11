@@ -71,23 +71,23 @@ export default function Header({ props }: { props: HeaderProps }) {
                 <div className="space-y-6 border-gray-200 px-4 py-6">
                   {navigation.pages.map((page, index) => (
                     <div key={index} className="flow-root">
-                      <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
+                      <Link href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
                         {page.name}
-                      </a>
+                      </Link>
                     </div>
                   ))}
                 </div>
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                    <Link href="#" className="-m-2 block p-2 font-medium text-gray-900">
                       Fazer login
-                    </a>
+                    </Link>
                   </div>
                   <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                    <Link href="#" className="-m-2 block p-2 font-medium text-gray-900">
                       Criar conta
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </Dialog.Panel>
@@ -128,20 +128,20 @@ export default function Header({ props }: { props: HeaderProps }) {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                  <Link href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     Fazer Login
-                  </a>
+                  </Link>
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                  <Link href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     Criar Conta
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="flex lg:ml-6">
-                  <a href="/products" className="p-2 text-gray-400 hover:text-gray-500">
+                  <Link href="/products" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="ml-4 flow-root lg:ml-6">

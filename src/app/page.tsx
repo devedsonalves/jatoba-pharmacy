@@ -15,6 +15,7 @@ import { ProductType } from "@/types/product";
 
 import formatCurrency from "@/utils/format-currency";
 import ProductDetails from "@/components/product-details";
+import Link from "next/link";
 
 export default function HomePage() {
   const [openMenu, setOpenMenu] = useState(false)
@@ -51,13 +52,13 @@ export default function HomePage() {
 
           <div className="flex justify-between items-center px-4 mb-12">
             <span className="text-2xl font-bold font-sans tracking-wide ">💊 Ofertas da Semana</span>
-            <a href="/produtos" className="border-b border-black">Ver Tudo</a>
+            <Link href="/produtos" className="border-b border-black">Ver Tudo</Link>
           </div>
 
           <ul className="grid grid-cols-1 px-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
             {products.map((product, index) => (
               <li key={index}>
-                <a href={`/products/${product.id}`} className="group block overflow-hidden">
+                <Link href={`/products/${product.id}`} className="group block overflow-hidden">
                   <img
                     src={product.imageSrc}
                     alt={product.imageAlt}
@@ -75,7 +76,7 @@ export default function HomePage() {
                       <span className="tracking-wider text-gray-900">{formatCurrency(product.price, "BRL")}</span>
                     </p>
                   </div>
-                </a>
+                </Link>
                 <button
                   onClick={() => {
                     addToCart({

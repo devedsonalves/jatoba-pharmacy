@@ -11,6 +11,7 @@ import { products } from '@/data/products'
 import formatCurrency from '@/utils/format-currency'
 import { useCartStore } from '@/store/cart-store'
 import Footer from '@/components/footer'
+import Link from 'next/link'
 
 const sortOptions = [
   { name: 'Relevância', href: '#', current: true },
@@ -52,6 +53,7 @@ export default function Example() {
   const [openCart, setOpenCart] = useState(false)
   const [openChat, setOpenChat] = useState(false)
   const [search, setSearch] = useState("")
+  const [sort, setSort] = useState("relevancia")
   
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -118,9 +120,9 @@ export default function Example() {
                       <ul role="list" className="px-2 py-3 font-medium text-gray-900">
                         {subCategories.map((category) => (
                           <li key={category.name}>
-                            <a href={category.href} className="block px-2 py-3">
+                            <Link href={category.href} className="block px-2 py-3">
                               {category.name}
-                            </a>
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -238,7 +240,7 @@ export default function Example() {
                         {sortOptions.map((option) => (
                           <Menu.Item key={option.name}>
                             {({ active }) => (
-                              <a
+                              <Link
                                 href={option.href}
                                 className={classNames(
                                   option.current ? 'font-medium text-gray-900' : 'text-gray-500',
@@ -247,7 +249,7 @@ export default function Example() {
                                 )}
                                 >
                                 {option.name}
-                              </a>
+                              </Link>
                             )}
                           </Menu.Item>
                         ))}
@@ -279,7 +281,7 @@ export default function Example() {
                   <ul role="list" className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                     {subCategories.map((category) => (
                       <li key={category.name}>
-                        <a href={category.href}>{category.name}</a>
+                        <Link href={category.href}>{category.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -336,7 +338,7 @@ export default function Example() {
                           {productsData.length > 0 ? 
                             productsData.map((product, index) => (
                               <li key={index}>
-                                <a href={`/products/${product.id}`} className="group block overflow-hidden">
+                                <Link href={`/products/${product.id}`} className="group block overflow-hidden">
                                   <img
                                     src={product.imageSrc}
                                     alt={product.imageAlt}
@@ -354,7 +356,7 @@ export default function Example() {
                                       <span className="tracking-wider text-gray-900">{formatCurrency(product.price, "BRL")}</span>
                                     </p>
                                   </div>
-                                </a>
+                                </Link>
                                 <button
                                   onClick={() => {
                                     addToCart({

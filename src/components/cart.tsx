@@ -5,6 +5,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useCartStore } from '@/store/cart-store'
 import formatCurrency from '@/utils/format-currency'
+import Link from 'next/link'
 
 interface CartProps {
   openCart: boolean
@@ -84,7 +85,7 @@ export default function Cart({ props }: { props: CartProps }) {
                                       <div>
                                         <div className="flex justify-between text-base font-medium text-gray-900">
                                           <h3>
-                                            <a href={product.href}>{product.name}</a>
+                                            <Link href={product.href}>{product.name}</Link>
                                           </h3>
                                           <p className="ml-4">{formatCurrency((product.price * product.amount), "BRL")}</p>
                                         </div>

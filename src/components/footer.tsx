@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="w-screen mt-16 sm:mt-24 sm:grid sm:grid-cols-2 md:grid-cols-5 sm:px-32 md:px-64">
@@ -15,9 +17,9 @@ export default function Footer() {
             <p>
               <span className="text-xs uppercase tracking-wide text-gray-500"> Ligue </span>
 
-              <a href="#" className="block text-2xl sm:text-xl font-medium text-gray-900 hover:opacity-75">
+              <Link href="#" className="block text-2xl sm:text-xl font-medium text-gray-900 hover:opacity-75">
                 (83) 3421-6689
-              </a>
+              </Link>
             </p>
 
             <ul className="mt-8 space-y-1 text-sm text-gray-700">
@@ -27,7 +29,7 @@ export default function Footer() {
 
             <ul className="mt-8 flex gap-6">
               <li>
-                <a
+                <Link
                   href="#"
                   rel="noreferrer"
                   target="_blank"
@@ -42,11 +44,11 @@ export default function Footer() {
                       clip-rule="evenodd"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   href="#"
                   rel="noreferrer"
                   target="_blank"
@@ -57,11 +59,11 @@ export default function Footer() {
                   <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" x="0px" y="0px"viewBox="0 0 50 50">
                     <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"></path>
                   </svg>
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   href="#"
                   rel="noreferrer"
                   target="_blank"
@@ -76,7 +78,7 @@ export default function Footer() {
                       clip-rule="evenodd"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -87,19 +89,19 @@ export default function Footer() {
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75">Sobre</a>
+                  <Link href="#" className="text-gray-700 transition hover:opacity-75">Sobre</Link>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75">Carreiras</a>
+                  <Link href="#" className="text-gray-700 transition hover:opacity-75">Carreiras</Link>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75">Marca</a>
+                  <Link href="#" className="text-gray-700 transition hover:opacity-75">Marca</Link>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75">Blog</a>
+                  <Link href="#" className="text-gray-700 transition hover:opacity-75">Blog</Link>
                 </li>
               </ul>
             </div>
@@ -109,15 +111,15 @@ export default function Footer() {
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75">Criar conta</a>
+                  <Link href="#" className="text-gray-700 transition hover:opacity-75">Criar conta</Link>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75">Fazer Login</a>
+                  <Link href="#" className="text-gray-700 transition hover:opacity-75">Fazer Login</Link>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75">Alterar dados</a>
+                  <Link href="#" className="text-gray-700 transition hover:opacity-75">Alterar dados</Link>
                 </li>
               </ul>
             </div>
@@ -128,15 +130,15 @@ export default function Footer() {
           <div className="sm:flex sm:items-center sm:justify-between">
             <ul className="flex flex-wrap gap-4 text-xs">
               <li>
-                <a href="#" className="text-gray-500 transition hover:opacity-75">Termos e Condições</a>
+                <Link href="#" className="text-gray-500 transition hover:opacity-75">Termos e Condições</Link>
               </li>
 
               <li>
-                <a href="#" className="text-gray-500 transition hover:opacity-75">Politica de Privacidade</a>
+                <Link href="#" className="text-gray-500 transition hover:opacity-75">Politica de Privacidade</Link>
               </li>
 
               <li>
-                <a href="#" className="text-gray-500 transition hover:opacity-75">Cookies</a>
+                <Link href="#" className="text-gray-500 transition hover:opacity-75">Cookies</Link>
               </li>
             </ul>
 
