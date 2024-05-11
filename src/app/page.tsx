@@ -51,7 +51,7 @@ export default function HomePage() {
 
           <div className="flex justify-between items-center px-4 mb-12">
             <span className="text-2xl font-bold font-sans tracking-wide ">💊 Ofertas da Semana</span>
-            <a href="/products" className="border-b border-black">Ver Mais</a>
+            <a href="/produtos" className="border-b border-black">Ver Tudo</a>
           </div>
 
           <ul className="grid grid-cols-1 px-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
