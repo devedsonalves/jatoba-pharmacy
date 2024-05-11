@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { ChatBubbleOvalLeftEllipsisIcon } from "@heroicons/react/24/outline"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -11,17 +10,14 @@ import Chat from "@/components/chat";
 import { products } from "@/data/products";
 import { banners } from "@/data/banners";
 import { useCartStore } from "@/store/cart-store";
-import { ProductType } from "@/types/product";
 
 import formatCurrency from "@/utils/format-currency";
-import ProductDetails from "@/components/product-details";
 import Link from "next/link";
 
 export default function HomePage() {
   const [openMenu, setOpenMenu] = useState(false)
   const [openCart, setOpenCart] = useState(false)
   const [openChat, setOpenChat] = useState(false)
-  const [openProduct, setOpenProduct] = useState<ProductType | null>(null)
 
   const { addToCart } = useCartStore()
 
@@ -58,7 +54,7 @@ export default function HomePage() {
           <ul className="grid grid-cols-1 px-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
             {products.map((product, index) => (
               <li key={index}>
-                <Link href={`/products/${product.id}`} className="group block overflow-hidden">
+                <Link href={product.href} className="group block overflow-hidden">
                   <img
                     src={product.imageSrc}
                     alt={product.imageAlt}
@@ -105,18 +101,6 @@ export default function HomePage() {
           
       {openChat && (
         <Chat props={{ setOpenChat }} />
-      )}
-
-      {openProduct && (
-        <div className="fixed h-screen w-screen top-0 left-0">
-          <div className="bg-amaranth flex justify-between items-center py-4 px-4">
-            <button onClick={() => setOpenProduct(null)}>
-              <ArrowLeftIcon className="h-8 w-8 text-white" />
-            </button>
-          </div>     
-    
-          <ProductDetails product={openProduct} setOpenProduct={setOpenProduct} />
-        </div>
       )}
 
       <Footer />
