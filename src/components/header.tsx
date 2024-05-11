@@ -5,6 +5,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Cart from "./cart";
 import { useCartStore } from "@/store/cart-store";
+import Link from "next/link";
 
 const navigation = {
   pages: [
@@ -115,14 +116,14 @@ export default function Header({ props }: { props: HeaderProps }) {
                 </button>
 
                 <div className="ml-4 flex lg:ml-0">
-                  <a href="/">
+                  <Link href="/">
                     <span className="sr-only">Your Company</span>
                     <img
                       className="h-16 w-auto rounded-full"
-                      src="./LOGO.png"
+                      src="./LOGO.png"  
                       alt=""
                       />
-                  </a>
+                  </Link>
                 </div>
 
               <div className="ml-auto flex items-center">
@@ -137,7 +138,7 @@ export default function Header({ props }: { props: HeaderProps }) {
                 </div>
 
                 <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
+                  <a href="/products" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
                   </a>

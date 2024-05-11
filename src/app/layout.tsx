@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="pt-BR" className="min-w-[100vw]">
+    <html lang="pt-BR" className="overflow-x-hidden max-w-[100vw]">
       <body className={inter.className}>
         {children}
       </body>

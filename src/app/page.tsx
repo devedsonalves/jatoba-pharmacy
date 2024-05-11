@@ -49,7 +49,11 @@ export default function HomePage() {
 
           <hr className="mb-8 sm:mb-8" />
 
-          <span className="text-2xl font-bold font-sans tracking-wide flex justify-center items-center mb-12">💊 Ofertas da Semana</span>
+          <div className="flex justify-between items-center px-4 mb-12">
+            <span className="text-2xl font-bold font-sans tracking-wide ">💊 Ofertas da Semana</span>
+            <a href="/products" className="border-b border-black">Ver Mais</a>
+          </div>
+
           <ul className="grid grid-cols-1 px-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
             {products.map((product, index) => (
               <li key={index}>

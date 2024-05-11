@@ -1,6 +1,6 @@
 "use client"
 
-import { Fragment, useState } from 'react'
+import { FormEvent, Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChatBubbleOvalLeftEllipsisIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
@@ -10,31 +10,32 @@ import Chat from '@/components/chat'
 import { products } from '@/data/products'
 import formatCurrency from '@/utils/format-currency'
 import { useCartStore } from '@/store/cart-store'
+import Footer from '@/components/footer'
 
 const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false },
+  { name: 'Relevância', href: '#', current: true },
+  { name: 'Maior Preço', href: '#', current: false },
+  { name: 'Menor preço', href: '#', current: false },
 ]
+
 const subCategories = [
-  { name: 'Totes', href: '#' },
-  { name: 'Backpacks', href: '#' },
-  { name: 'Travel Bags', href: '#' },
-  { name: 'Hip Bags', href: '#' },
-  { name: 'Laptop Sleeves', href: '#' },
+  { name: 'Medicamentos', href: '#' },
+  { name: 'Vitaminas', href: '#' },
+  { name: 'Xaropes', href: '#' },
+  { name: 'Preservativos', href: '#' },
+  { name: 'Cuidados com a pele', href: '#' },
 ]
+
 const filters = [
   {
     id: 'category',
     name: 'Categoria',
     options: [
-      { value: 'new-arrivals', label: 'New Arrivals', checked: false },
-      { value: 'sale', label: 'Sale', checked: false },
+      { value: 'new-arrivals', label: 'New Arrivals', checked: true },
+      { value: 'sale', label: 'Sale', checked: true },
       { value: 'travel', label: 'Travel', checked: true },
-      { value: 'organization', label: 'Organization', checked: false },
-      { value: 'accessories', label: 'Accessories', checked: false },
+      { value: 'organization', label: 'Organization', checked: true },
+      { value: 'accessories', label: 'Accessories', checked: true },
     ],
   },
 ]
@@ -45,11 +46,25 @@ function classNames(...classes: string[]) {
 
 export default function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const [productsData, setProductsData] = useState([...products])
 
   const [openMenu, setOpenMenu] = useState(false)
   const [openCart, setOpenCart] = useState(false)
   const [openChat, setOpenChat] = useState(false)
-  const [openProduct, setOpenProduct] = useState<ProductType | null>(null)
+  const [search, setSearch] = useState("")
+  
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+
+    console.log(search)
+
+    const filteredProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(search.toLowerCase())
+    )
+
+    setProductsData(filteredProducts)
+  }
+
 
   const { addToCart } = useCartStore()
 
@@ -160,18 +175,54 @@ export default function Example() {
           </Transition.Root>
 
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-end pb-6 pt-24">
-              <div className="flex items-center">
-                <Menu as="div" className="relative inline-block text-left">
-                  <div>
-                    <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                      Ordenar
-                      <ChevronDownIcon
-                        className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                        aria-hidden="true"
+            <div className="w-full flex items-center justify-end pb-6 pt-24">
+              <div className="w-full flex items-center">
+                <Menu as="div" className="w-full text-left flex justify-between items-center">
+                  <form onSubmit={handleSubmit} className='w-full flex justify-between items-center'>
+                    <div className="relative">
+                      <label className="sr-only"> Search </label>
+
+                      <input
+                        type="text"
+                        id="Search"
+                        placeholder="O que está procurando?"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="rounded-lg border border-black pl-4 py-2.5 pe-10 sm:text-sm"
                       />
-                    </Menu.Button>
-                  </div>
+
+                      <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
+                        <button type="submit" className="text-gray-600 hover:text-gray-700">
+                          <span className="sr-only">Search</span>
+
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            color="black"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            className="h-4 w-4"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                            />
+                          </svg>
+                        </button>
+                      </span>
+                    </div>
+                    <div>
+                      <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                        Ordenar
+                        <ChevronDownIcon
+                          className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                          aria-hidden="true"
+                          />
+                      </Menu.Button>
+                    </div>
+                  </form>
 
                   <Transition
                     as={Fragment}
@@ -182,7 +233,7 @@ export default function Example() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute top-9 right-0 z-[1001] mt-2 w-40 origin-top-right rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="py-1">
                         {sortOptions.map((option) => (
                           <Menu.Item key={option.name}>
@@ -194,7 +245,7 @@ export default function Example() {
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm'
                                 )}
-                              >
+                                >
                                 {option.name}
                               </a>
                             )}
@@ -216,7 +267,7 @@ export default function Example() {
               </div>
             </div>
 
-            <section aria-labelledby="products-heading" className="pb-24 pt-6">
+            <section aria-labelledby="products-heading" className="pb-24">
               <h2 id="products-heading" className="sr-only">
                 Products
               </h2>
@@ -282,45 +333,50 @@ export default function Example() {
                   <section>
                     <div className="mx-auto max-w-screen-xl px-4 pb-4 sm:px-6 sm:pb-8 lg:px-8">
                       <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                          {products.map((product, index) => (
-                            <li key={index}>
-                              <a href={`/products/${product.id}`} className="group block overflow-hidden">
-                                <img
-                                  src={product.imageSrc}
-                                  alt={product.imageAlt}
-                                  className="h-[350px] sm:h-[250px] w-full object-cover sm:object-contain transition duration-500 group-hover:scale-105"
-                                />
-    
-                                <div className="sm:h-28 relative bg-white pt-3 flex flex-col justify-between">
-                                  <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                                    {product.name}
-                                  </h3>
-    
-                                  <p className="mt-2">
-                                    <span className="sr-only"> Regular Price </span>
-    
-                                    <span className="tracking-wider text-gray-900">{formatCurrency(product.price, "BRL")}</span>
-                                  </p>
-                                </div>
-                              </a>
-                              <button
-                                onClick={() => {
-                                  addToCart({
-                                    id: product.id,
-                                    name: product.name,
-                                    href: product.href,
-                                    price: product.price,
-                                    amount: 1,
-                                    imageSrc: product.imageSrc,
-                                    imageAlt: product.imageAlt
-                                  })
-                                }}           
-                                className="mt-2 flex justify-center items-center uppercase bg-amaranth font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]">
-                                <p className="text-md sm:text-xs sm:  px-1">Adicionar ao Carrinho</p>
-                                <span className="ml-2 sm:hidden">🛒</span>
-                              </button>
+                          {productsData.length > 0 ? 
+                            productsData.map((product, index) => (
+                              <li key={index}>
+                                <a href={`/products/${product.id}`} className="group block overflow-hidden">
+                                  <img
+                                    src={product.imageSrc}
+                                    alt={product.imageAlt}
+                                    className="h-[350px] sm:h-[250px] w-full object-cover sm:object-contain transition duration-500 group-hover:scale-105"
+                                  />
+      
+                                  <div className="sm:h-28 relative bg-white pt-3 flex flex-col justify-between">
+                                    <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                                      {product.name}
+                                    </h3>
+      
+                                    <p className="mt-2">
+                                      <span className="sr-only"> Regular Price </span>
+      
+                                      <span className="tracking-wider text-gray-900">{formatCurrency(product.price, "BRL")}</span>
+                                    </p>
+                                  </div>
+                                </a>
+                                <button
+                                  onClick={() => {
+                                    addToCart({
+                                      id: product.id,
+                                      name: product.name,
+                                      href: product.href,
+                                      price: product.price,
+                                      amount: 1,
+                                      imageSrc: product.imageSrc,
+                                      imageAlt: product.imageAlt
+                                    })
+                                  }}           
+                                  className="mt-2 flex justify-center items-center uppercase bg-amaranth font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]">
+                                  <p className="text-md sm:text-xs sm:  px-1">Adicionar ao Carrinho</p>
+                                  <span className="ml-2 sm:hidden">🛒</span>
+                                </button>
+                              </li>
+                            )) : (
+                            <li className='animate-pulse w=[full flex justify-center items-center text-center'>
+                              Nenhum produto encontrado...
                             </li>
-                          ))}
+                          )}
                       </ul>
                     </div>
                   </section>
@@ -338,6 +394,8 @@ export default function Example() {
       {openChat && (
         <Chat props={{ setOpenChat }} />
       )}
+
+      <Footer />
     </>
   )
 }
