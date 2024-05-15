@@ -48,7 +48,7 @@ export default function HomePage() {
 
           <div className="flex justify-between items-center px-4 mb-12">
             <span className="text-2xl font-bold font-sans tracking-wide">💊 Ofertas da Semana</span>
-            <Link href="/produtos" className="hover:border-b hover:scale-105 border-black text-lg font-sans font-bold sm:font-semibold">Ver Tudo</Link>
+            <Link href="/produtos" className="hover:border-b hover:scale-105 border-black text-lg font-sans sm:font-semibold">Ver Tudo</Link>
           </div>
 
           <ul className="grid grid-cols-1 px-4 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
