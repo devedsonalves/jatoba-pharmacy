@@ -333,7 +333,7 @@ export default function ProductsPage() {
                 {/* Product grid */}
                 <div className="lg:col-span-3">
                   <section>
-                    <div className="mx-auto max-w-screen-xl px-4 pb-4 sm:px-6 sm:pb-8 lg:px-8">
+                    <div className="mx-auto max-w-screen-xl px-0 pb-4 sm:px-6 sm:pb-8 lg:px-8">
                       <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                           {productsData.length > 0 ? 
                             productsData.map((product, index) => (
