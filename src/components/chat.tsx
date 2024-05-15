@@ -13,7 +13,7 @@ export default function Chat({ props }: { props: ChatProps}) {
   const { setOpenChat } = props
 
   return (
-    <div className="fixed bg-white h-screen w-screen top-0 left-0 z-[1000]">
+    <div className="fixed bg-white h-screen w-full top-0 left-0 z-[1000]">
       <div className="bg-amaranth flex justify-between items-center py-4 px-4">
         <button onClick={() => setOpenChat(false)} className="p">
           <ArrowLeftIcon className="h-6 w-6 text-white" />
@@ -23,8 +23,8 @@ export default function Chat({ props }: { props: ChatProps}) {
         </button>
       </div>
 
-      <div className="p-5 pt-12 flex items-start gap-2.5">
-        <div className="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-300 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+      <div className="px-2 sm:px-8 pt-12 flex items-start gap-2.5 w-full justify-end">
+        <div className="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-300 bg-gray-200 rounded-e-xl rounded-es-xl dark:bg-gray-700">
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
               <span className="text-sm font-semibold text-gray-900 dark:text-white">Atendimento</span>
               <span className="text-sm font-normal text-gray-500 dark:text-gray-400">11:46</span>
@@ -34,11 +34,13 @@ export default function Chat({ props }: { props: ChatProps}) {
         <img className="w-12 h-12 rounded-full" src="./LOGO.png" alt="Jatoba logo" />
       </div>
 
-      <div className="fixed w-screen bottom-0 left-0 py-4 px-2 bg-gray-100 flex justify-between items-center gap-4">
-        <Input className="w-full rounded-2xl py-6 border-0 bg-white" type="text" placeholder="Digite sua mensagem..." />
-        <Button className="bg-amaranth hover:bg-red-600 h-14 w-14 rounded-full">
-          <PaperAirplaneIcon className="h-12 w-12 text-white" />
-        </Button>
+      <div className="w-full fixed bottom-0 sm:bottom-4 flex justify-center items-center">
+        <div className="w-full sm:w-3/6 left-0 py-4 sm:py-2 px-2 bg-gray-200 flex justify-between items-center gap-4 sm:rounded-3xl">
+          <Input className="w-full rounded-2xl py-6 sm:py-5 border-0 bg-white" type="text" placeholder="Digite sua mensagem..." />
+          <Button className="bg-amaranth hover:bg-red-600 h-14 w-14 sm:h-12 sm:w-12 rounded-full">
+            <PaperAirplaneIcon className="h-12 w-12 text-white" />
+          </Button>
+        </div>
       </div>
     </div>
   )
