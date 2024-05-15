@@ -94,7 +94,7 @@ export const products = [
     category: "",
     medicineLeaflet: "",
   
-    imageSrc: 'https://dgp88uvg9z4ut.cloudfront.net/Custom/Content/Productstos/41/70415_benegrip-c-20-cpr-p84009_m1_637879825882730990.jpg',
+    imageSrc: 'https://paguemenos.vtexassets.com/arquivos/ids/693368-800-auto?v=638242471171530000&width=800&height=auto&aspect=true',
     imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
   },
   {

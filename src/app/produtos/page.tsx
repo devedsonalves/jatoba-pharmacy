@@ -45,7 +45,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function ProductsPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [productsData, setProductsData] = useState([...products])
 
@@ -190,7 +190,7 @@ export default function Example() {
                         placeholder="O que está procurando?"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="rounded-lg border border-black pl-4 py-2.5 pe-10 sm:text-sm"
+                        className="w-64 sm:w-full rounded-lg border border-black pl-4 py-2.5 pe-10 text-xs sm:text-sm"
                       />
 
                       <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
@@ -338,7 +338,7 @@ export default function Example() {
                           {productsData.length > 0 ? 
                             productsData.map((product, index) => (
                               <li key={index}>
-                                <Link href={`/products/${product.id}`} className="group block overflow-hidden">
+                                <Link href={product.href} className="group block overflow-hidden">
                                   <img
                                     src={product.imageSrc}
                                     alt={product.imageAlt}
@@ -356,7 +356,7 @@ export default function Example() {
                                       <span className="tracking-wider text-gray-900">{formatCurrency(product.price, "BRL")}</span>
                                     </p>
                                   </div>
-                                </Link>
+                                </Link  >
                                 <button
                                   onClick={() => {
                                     addToCart({

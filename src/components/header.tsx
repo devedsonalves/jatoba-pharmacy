@@ -9,8 +9,9 @@ import Link from "next/link";
 
 const navigation = {
   pages: [
-    { name: 'Politica e privacidade', href: '#' },
-    { name: 'Sobre nós', href: '#' },
+    { name: 'Página inical', href: '/' },
+    { name: 'Produtos', href: '/produtos' },
+    { name: 'Carrinho', href: '#' },
   ],
 }
 
@@ -138,7 +139,7 @@ export default function Header({ props }: { props: HeaderProps }) {
                 </div>
 
                 <div className="flex lg:ml-6">
-                  <Link href="/products" className="p-2 text-gray-400 hover:text-gray-500">
+                  <Link href="/produtos" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
                   </Link>
