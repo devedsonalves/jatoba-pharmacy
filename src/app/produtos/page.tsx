@@ -1,17 +1,17 @@
 "use client"
 
-import { FormEvent, Fragment, useState } from 'react'
+import { FormEvent, Fragment, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChatBubbleOvalLeftEllipsisIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
 import Header from '@/components/header'
-import { ProductType } from '@/types/product'
 import Chat from '@/components/chat'
 import { products } from '@/data/products'
 import formatCurrency from '@/utils/format-currency'
 import { useCartStore } from '@/store/cart-store'
 import Footer from '@/components/footer'
 import Link from 'next/link'
+import { useSearchParams, useRouter } from 'next/navigation'
 
 const sortOptions = [
   { name: 'Relevância', href: '#', current: true },
@@ -53,22 +53,33 @@ export default function ProductsPage() {
   const [openCart, setOpenCart] = useState(false)
   const [openChat, setOpenChat] = useState(false)
   const [search, setSearch] = useState("")
-  const [sort, setSort] = useState("relevancia")
+  const [showSearch, setShowSearch] = useState(false)
   
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault()
-
-    console.log(search)
+  const router = useRouter() 
+  const params = useSearchParams() 
+  
+  const query = params.get("query") as string
+  
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault()
+    
+    if (query == null) {
+      return
+    }
 
     const filteredProducts = products.filter((product) =>
-      product.name.toLowerCase().includes(search.toLowerCase())
+      product.name.toLowerCase().includes(query.toLowerCase())
     )
-
+         
     setProductsData(filteredProducts)
+    setShowSearch(true)
   }
 
-
   const { addToCart } = useCartStore()
+
+  useEffect(() => {
+    router.push(`/produtos?query=${search.toLowerCase()}`)
+  }, [search])
 
   return (
     <>
@@ -103,7 +114,7 @@ export default function ProductsPage() {
                 >
                   <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                     <div className="flex items-center justify-between px-4">
-                      <h2 className="text-lg font-medium text-gray-900">Filters</h2>
+                      <h2 className="text-lg font-medium text-gray-900">Filtros</h2>
                       <button
                         type="button"
                         className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
@@ -332,6 +343,12 @@ export default function ProductsPage() {
 
                 {/* Product grid */}
                 <div className="lg:col-span-3">
+                  {showSearch && (
+                    <div className='mb-12 mt-6 flex justify-center items-center text-lg'>
+                      <p className=''>Resultados para: <span className='font-semibold'>{search}</span></p>
+                    </div>
+                  )} 
+
                   <section>
                     <div className="mx-auto max-w-screen-xl px-0 pb-4 sm:px-6 sm:pb-8 lg:px-8">
                       <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -375,7 +392,7 @@ export default function ProductsPage() {
                                 </button>
                               </li>
                             )) : (
-                            <li className='animate-pulse w=[full flex justify-center items-center text-center'>
+                            <li className='animate-pulse w-[650px] mx-auto py-32 flex justify-center items-center text-center'>
                               Nenhum produto encontrado...
                             </li>
                           )}
