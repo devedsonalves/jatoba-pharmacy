@@ -1,6 +1,6 @@
 "use client"
 
-import { FormEvent, Fragment, useEffect, useState } from 'react'
+import { FormEvent, Fragment, Suspense, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChatBubbleOvalLeftEllipsisIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
@@ -187,7 +187,7 @@ export default function ProductsPage() {
             </Dialog>
           </Transition.Root>
 
-          <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <main className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="w-full flex items-center justify-end pb-6 pt-24">
               <div className="w-full flex items-center">
                 <Menu as="div" className="w-full text-left flex justify-between items-center">
@@ -354,43 +354,45 @@ export default function ProductsPage() {
                       <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                           {productsData.length > 0 ? 
                             productsData.map((product, index) => (
-                              <li key={index}>
-                                <Link href={product.href} className="group block overflow-hidden">
-                                  <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
-                                    className="h-[350px] sm:h-[250px] w-full object-cover sm:object-contain transition duration-500 group-hover:scale-105"
-                                  />
-      
-                                  <div className="sm:h-28 relative bg-white pt-3 flex flex-col justify-between">
-                                    <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                                      {product.name}
-                                    </h3>
-      
-                                    <p className="mt-2">
-                                      <span className="sr-only"> Regular Price </span>
-      
-                                      <span className="tracking-wider text-gray-900">{formatCurrency(product.price, "BRL")}</span>
-                                    </p>
-                                  </div>
-                                </Link  >
-                                <button
-                                  onClick={() => {
-                                    addToCart({
-                                      id: product.id,
-                                      name: product.name,
-                                      href: product.href,
-                                      price: product.price,
-                                      amount: 1,
-                                      imageSrc: product.imageSrc,
-                                      imageAlt: product.imageAlt
-                                    })
-                                  }}           
-                                  className="mt-2 flex justify-center items-center uppercase bg-amaranth font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]">
-                                  <p className="text-md sm:text-xs sm:  px-1">Adicionar ao Carrinho</p>
-                                  <span className="ml-2 sm:hidden">🛒</span>
-                                </button>
-                              </li>
+                              <Suspense>
+                                <li key={index}>
+                                  <Link href={product.href} className="group block overflow-hidden">
+                                    <img
+                                      src={product.imageSrc}
+                                      alt={product.imageAlt}
+                                      className="h-[350px] sm:h-[250px] w-full object-cover sm:object-contain transition duration-500 group-hover:scale-105"
+                                    />
+        
+                                    <div className="sm:h-28 relative bg-white pt-3 flex flex-col justify-between">
+                                      <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                                        {product.name}
+                                      </h3>
+        
+                                      <p className="mt-2">
+                                        <span className="sr-only"> Regular Price </span>
+        
+                                        <span className="tracking-wider text-gray-900">{formatCurrency(product.price, "BRL")}</span>
+                                      </p>
+                                    </div>
+                                  </Link  >
+                                  <button
+                                    onClick={() => {
+                                      addToCart({
+                                        id: product.id,
+                                        name: product.name,
+                                        href: product.href,
+                                        price: product.price,
+                                        amount: 1,
+                                        imageSrc: product.imageSrc,
+                                        imageAlt: product.imageAlt
+                                      })
+                                    }}           
+                                    className="mt-2 flex justify-center items-center uppercase bg-amaranth font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]">
+                                    <p className="text-md sm:text-xs sm:  px-1">Adicionar ao Carrinho</p>
+                                    <span className="ml-2 sm:hidden">🛒</span>
+                                  </button>
+                                </li>
+                              </Suspense>
                             )) : (
                             <li className='animate-pulse w-[650px] mx-auto py-32 flex justify-center items-center text-center'>
                               Nenhum produto encontrado...
