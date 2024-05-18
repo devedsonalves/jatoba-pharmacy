@@ -8,7 +8,7 @@ export default function ListProducts({ products }: { products: ProductType[] }) 
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 pb-4 sm:px-6 sm:pb-8 lg:px-8">
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {products.length > 0 ? 
           products.map((product, index) => (
             <li key={index}>
@@ -49,7 +49,7 @@ export default function ListProducts({ products }: { products: ProductType[] }) 
               </button>
             </li>
           )) : (
-          <li className='animate-pulse w-[650px] mx-auto py-32 flex justify-center items-center text-center'>
+          <li className='animate-pulse w-full sm:w-[650px] mx-auto py-32 flex justify-center items-center text-center'>
             Nenhum produto encontrado...
           </li>
         )}

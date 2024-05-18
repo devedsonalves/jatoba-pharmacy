@@ -20,7 +20,7 @@ export default function HomePage() {
   const [openChat, setOpenChat] = useState(false)
 
   return (
-    <>
+    <Suspense fallback={<Loading/>}>
       <Header props={{ openMenu, setOpenMenu, openCart, setOpenCart }} />
 
       <div className="bg-white">
@@ -62,6 +62,6 @@ export default function HomePage() {
       )}
 
       <Footer />
-    </>
+    </Suspense>
   );
 }

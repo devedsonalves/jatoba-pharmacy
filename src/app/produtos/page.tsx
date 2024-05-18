@@ -7,13 +7,11 @@ import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/rea
 import Header from '@/components/header'
 import Chat from '@/components/chat'
 import { products } from '@/data/products'
-import formatCurrency from '@/utils/format-currency'
-import { useCartStore } from '@/store/cart-store'
 import Footer from '@/components/footer'
 import Link from 'next/link'
-import { useSearchParams, useRouter } from 'next/navigation'
 import Loading from '@/components/loading'
 import ListProducts from '@/components/list-products'
+import { usePathname, useRouter } from 'next/navigation'
 
 const sortOptions = [
   { name: 'Relevância', href: '#', current: true },
@@ -55,31 +53,26 @@ export default function ProductsPage() {
   const [openCart, setOpenCart] = useState(false)
   const [openChat, setOpenChat] = useState(false)
   const [search, setSearch] = useState("")
+  const [query, setQuery] = useState<string | null>()
   const [showSearch, setShowSearch] = useState(false)
   
   const router = useRouter() 
-  const params = useSearchParams() 
-  
-  async function handleSubmit(event: FormEvent) {
+  const searchParams = new URLSearchParams(usePathname().toString()) 
+
+  function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
-    await router.replace(`/produtos?query=${search.toLowerCase()}`)
+    searchParams.set("query", search)
+    setQuery(searchParams.get("query"))
     
-    console.log(params.get("query"))
-    
-    if (
-      params.get("query") == null ||
-      params.get("query") == " "
-    ) {
-      setShowSearch(false)
+    if (query == "" || query == null) {
       router.push("/produtos")
+      setShowSearch(false)
       return
     }
     
-    let query = params.get("query") as string
-
     const filteredProducts = products.filter((product) =>
-      product.name.toLowerCase().includes(query.toLowerCase())
+      product.name.toLowerCase().includes(search.toLowerCase())
     )
          
     setProductsData(filteredProducts)
@@ -87,7 +80,7 @@ export default function ProductsPage() {
   }
 
   return (
-    <>
+    <Suspense fallback={<Loading />}>
       <Header props={{ openCart, setOpenCart, openMenu, setOpenMenu }} />
 
       <div className="bg-white pt-10">
@@ -348,9 +341,9 @@ export default function ProductsPage() {
 
                 {/* Product grid */}
                 <div className="lg:col-span-3">
-                  {params.get("query") && (
+                  {showSearch && (
                     <div className='mb-12 mt-6 flex justify-center items-center text-lg'>
-                      <p className=''>Resultados para: <span className='font-semibold'>{params.get("query")}</span></p>
+                      <p className=''>Resultados para: <span className='font-semibold'>{query}</span></p>
                     </div>
                   )} 
 
@@ -373,6 +366,6 @@ export default function ProductsPage() {
       )}
 
       <Footer />
-    </>
+    </Suspense>
   )
 }
