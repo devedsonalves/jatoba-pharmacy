@@ -13,6 +13,7 @@ import Footer from '@/components/footer'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Loading from '@/components/loading'
+import ListProducts from '@/components/list-products'
 
 const sortOptions = [
   { name: 'Relevância', href: '#', current: true },
@@ -20,7 +21,7 @@ const sortOptions = [
   { name: 'Menor preço', href: '#', current: false },
 ]
 
-const subCategories = [
+const categories = [
   { name: 'Medicamentos', href: '#' },
   { name: 'Vitaminas', href: '#' },
   { name: 'Xaropes', href: '#' },
@@ -130,7 +131,7 @@ export default function ProductsPage() {
                     <form className="mt-4 border-t border-gray-200">
                       <h3 className="sr-only">Categories</h3>
                       <ul role="list" className="px-2 py-3 font-medium text-gray-900">
-                        {subCategories.map((category) => (
+                        {categories.map((category) => (
                           <li key={category.name}>
                             <Link href={category.href} className="block px-2 py-3">
                               {category.name}
@@ -188,8 +189,8 @@ export default function ProductsPage() {
             </Dialog>
           </Transition.Root>
 
-          <main className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="w-full flex items-center justify-end pb-6 pt-24">
+          <main className="mx-auto w-full max-w-7xl px-0 sm:px-6 lg:px-8">
+            <div className="w-full flex items-center justify-end pb-6 px-4 pt-24">
               <div className="w-full flex items-center">
                 <Menu as="div" className="w-full text-left flex justify-between items-center">
                   <form onSubmit={handleSubmit} className='w-full flex justify-between items-center'>
@@ -291,7 +292,7 @@ export default function ProductsPage() {
                 <form className="hidden lg:block">
                   <h3 className="sr-only">Categories</h3>
                   <ul role="list" className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
-                    {subCategories.map((category) => (
+                    {categories.map((category) => (
                       <li key={category.name}>
                         <Link href={category.href}>{category.name}</Link>
                       </li>
@@ -351,56 +352,9 @@ export default function ProductsPage() {
                   )} 
 
                   <section>
-                    <div className="mx-auto max-w-screen-xl px-0 pb-4 sm:px-6 sm:pb-8 lg:px-8">
-                      <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                        <Suspense fallback={<Loading />}>
-                          {productsData.length > 0 ? 
-                            productsData.map((product, index) => (
-                              <li key={index}>
-                                <Link href={product.href} className="group block overflow-hidden">
-                                  <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
-                                    className="h-[350px] sm:h-[250px] w-full object-cover sm:object-contain transition duration-500 group-hover:scale-105"
-                                  />
-      
-                                  <div className="sm:h-28 relative bg-white pt-3 flex flex-col justify-between">
-                                    <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                                      {product.name}
-                                    </h3>
-      
-                                    <p className="mt-2">
-                                      <span className="sr-only"> Regular Price </span>
-      
-                                      <span className="tracking-wider text-gray-900">{formatCurrency(product.price, "BRL")}</span>
-                                    </p>
-                                  </div>
-                                </Link  >
-                                <button
-                                  onClick={() => {
-                                    addToCart({
-                                      id: product.id,
-                                      name: product.name,
-                                      href: product.href,
-                                      price: product.price,
-                                      amount: 1,
-                                      imageSrc: product.imageSrc,
-                                      imageAlt: product.imageAlt
-                                    })
-                                  }}           
-                                  className="mt-2 flex justify-center items-center uppercase bg-amaranth font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]">
-                                  <p className="text-md sm:text-xs sm:  px-1">Adicionar ao Carrinho</p>
-                                  <span className="ml-2 sm:hidden">🛒</span>
-                                </button>
-                              </li>
-                            )) : (
-                            <li className='animate-pulse w-[650px] mx-auto py-32 flex justify-center items-center text-center'>
-                              Nenhum produto encontrado...
-                            </li>
-                          )}
-                        </Suspense>
-                      </ul>
-                    </div>
+                    <Suspense fallback={<Loading />}>
+                      <ListProducts products={products} />
+                    </Suspense>
                   </section>
                 </div>
               </div>
