@@ -65,8 +65,9 @@ export default function ProductsPage() {
     searchParams.set("query", search)
     setQuery(searchParams.get("query"))
     
-    if (query == "" || query == null) {
+    if (query == "" || query == null || search == "" || search == null) {
       router.push("/produtos")
+      setProductsData(products)
       setShowSearch(false)
       return
     }
