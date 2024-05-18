@@ -49,9 +49,7 @@ export default function HomePage() {
             <Link href="/produtos" className="hover:border-b hover:scale-105 border-black text-md sm:text-lg font-sans font-bold sm:font-semibold">Ver Tudo</Link>
           </div>
 
-          <Suspense fallback={<Loading />}>
-            <ListProducts products={products} />
-          </Suspense>
+          <ListProducts products={products} />
         </div>
       </div>
 

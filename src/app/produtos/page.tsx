@@ -60,14 +60,23 @@ export default function ProductsPage() {
   const router = useRouter() 
   const params = useSearchParams() 
   
-  const query = params.get("query") as string
-  
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault()
+
+    await router.replace(`/produtos?query=${search.toLowerCase()}`)
     
-    if (query == null) {
+    console.log(params.get("query"))
+    
+    if (
+      params.get("query") == null ||
+      params.get("query") == " "
+    ) {
+      setShowSearch(false)
+      router.push("/produtos")
       return
     }
+    
+    let query = params.get("query") as string
 
     const filteredProducts = products.filter((product) =>
       product.name.toLowerCase().includes(query.toLowerCase())
@@ -76,12 +85,6 @@ export default function ProductsPage() {
     setProductsData(filteredProducts)
     setShowSearch(true)
   }
-
-  const { addToCart } = useCartStore()
-
-  useEffect(() => {
-    router.push(`/produtos?query=${search.toLowerCase()}`)
-  }, [search])
 
   return (
     <>
@@ -190,7 +193,7 @@ export default function ProductsPage() {
           </Transition.Root>
 
           <main className="mx-auto w-full max-w-7xl px-0 sm:px-6 lg:px-8">
-            <div className="w-full flex items-center justify-end pb-6 px-4 pt-24">
+            <div className="w-full flex items-center justify-end pb-6 px-4 sm:px-0 pt-24">
               <div className="w-full flex items-center">
                 <Menu as="div" className="w-full text-left flex justify-between items-center">
                   <form onSubmit={handleSubmit} className='w-full flex justify-between items-center'>
@@ -345,16 +348,14 @@ export default function ProductsPage() {
 
                 {/* Product grid */}
                 <div className="lg:col-span-3">
-                  {showSearch && (
+                  {params.get("query") && (
                     <div className='mb-12 mt-6 flex justify-center items-center text-lg'>
-                      <p className=''>Resultados para: <span className='font-semibold'>{search}</span></p>
+                      <p className=''>Resultados para: <span className='font-semibold'>{params.get("query")}</span></p>
                     </div>
                   )} 
 
                   <section>
-                    <Suspense fallback={<Loading />}>
-                      <ListProducts products={products} />
-                    </Suspense>
+                    <ListProducts products={productsData} />
                   </section>
                 </div>
               </div>
