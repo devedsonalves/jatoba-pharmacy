@@ -1,7 +1,8 @@
+import Link from "next/link";
+
+import formatCurrency from "@/utils/format-currency";
 import { useCartStore } from "@/store/cart-store";
 import { ProductType } from "@/types/product";
-import formatCurrency from "@/utils/format-currency";
-import Link from "next/link";
 
 export default function ListProducts({ products }: { products: ProductType[] }) {
   const { addToCart } = useCartStore()

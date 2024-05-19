@@ -1,18 +1,17 @@
 "use client"
 
+import Link from "next/link";
 import { Suspense, useState } from "react";
 import { ChatBubbleOvalLeftEllipsisIcon } from "@heroicons/react/24/outline"
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Chat from "@/components/chat";
-import { banners } from "@/data/banners";
-
-import Link from "next/link";
 import Loading from "@/components/loading";
 import ListProducts from "@/components/list-products";
 import { products } from "@/data/products";
+import { banners } from "@/data/banners";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 export default function HomePage() {
   const [openMenu, setOpenMenu] = useState(false)

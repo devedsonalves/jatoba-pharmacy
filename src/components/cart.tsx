@@ -1,11 +1,12 @@
 "use client"
 
+import Link from 'next/link'
 import { Dispatch, Fragment, SetStateAction } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { useCartStore } from '@/store/cart-store'
+
 import formatCurrency from '@/utils/format-currency'
-import Link from 'next/link'
+import { useCartStore } from '@/store/cart-store'
 
 interface CartProps {
   openCart: boolean

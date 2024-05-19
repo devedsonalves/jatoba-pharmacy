@@ -1,5 +1,6 @@
-import { ProductInCartType } from "@/types/product-in-cart";
 import { create } from "zustand";
+
+import { ProductInCartType } from "@/types/product-in-cart";
 
 type CartStore = {
   cart: ProductInCartType[]

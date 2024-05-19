@@ -1,17 +1,18 @@
 "use client"
 
+import Link from 'next/link'
 import { FormEvent, Fragment, Suspense, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChatBubbleOvalLeftEllipsisIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
+import { usePathname, useRouter } from 'next/navigation'
+
 import Header from '@/components/header'
 import Chat from '@/components/chat'
-import { products } from '@/data/products'
 import Footer from '@/components/footer'
-import Link from 'next/link'
 import Loading from '@/components/loading'
 import ListProducts from '@/components/list-products'
-import { usePathname, useRouter } from 'next/navigation'
+import { products } from '@/data/products'
 
 const sortOptions = [
   { name: 'Relevância', href: '#', current: true },

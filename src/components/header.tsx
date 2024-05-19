@@ -1,11 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 
+import Link from "next/link";
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import Cart from "./cart";
+
+import Cart from "@/components/cart";
 import { useCartStore } from "@/store/cart-store";
-import Link from "next/link";
 
 const navigation = {
   pages: [

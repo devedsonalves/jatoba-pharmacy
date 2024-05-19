@@ -1,14 +1,14 @@
 "use client"
 
+import { Suspense, useState } from "react";
+
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Loading from "@/components/loading";
-import { Suspense, useState } from "react";
 
 export default function CartPage() {
   const [openMenu, setOpenMenu] = useState(false)
   const [openCart, setOpenCart] = useState(false)
-  const [openChat, setOpenChat] = useState(false)
 
   return (
     <Suspense fallback={<Loading />}>

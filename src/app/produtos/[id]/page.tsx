@@ -1,12 +1,13 @@
 "use client"
 
+import { FormEvent, useEffect, useState } from "react"
+import { MinusIcon, PlusIcon } from "@radix-ui/react-icons"
+
 import Chat from "@/components/chat"
 import Header from "@/components/header"
 import { products } from "@/data/products"
 import { useCartStore } from "@/store/cart-store"
 import { ProductType } from "@/types/product"
-import { MinusIcon, PlusIcon } from "@radix-ui/react-icons"
-import { FormEvent, useEffect, useState } from "react"
 
 interface Props {
   params: { id: number }
