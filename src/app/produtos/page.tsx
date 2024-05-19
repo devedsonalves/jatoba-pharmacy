@@ -32,11 +32,7 @@ const filters = [
     id: 'category',
     name: 'Categoria',
     options: [
-      { value: 'new-arrivals', label: 'New Arrivals', checked: true },
-      { value: 'sale', label: 'Sale', checked: true },
-      { value: 'travel', label: 'Travel', checked: true },
-      { value: 'organization', label: 'Organization', checked: true },
-      { value: 'accessories', label: 'Accessories', checked: true },
+      { value: 'a-definir', label: 'Em desenvolvimento', checked: true },
     ],
   },
 ]
@@ -344,7 +340,7 @@ export default function ProductsPage() {
                 <div className="lg:col-span-3">
                   {showSearch && (
                     <div className='mb-12 mt-6 flex justify-center items-center text-lg'>
-                      <p className=''>Resultados para: <span className='font-semibold'>{query}</span></p>
+                      <p>Resultados para: <span className='font-semibold uppercase'>{query}</span></p>
                     </div>
                   )} 
 

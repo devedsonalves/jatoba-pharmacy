@@ -11,7 +11,7 @@ const navigation = {
   pages: [
     { name: 'Página inical', href: '/' },
     { name: 'Produtos', href: '/produtos' },
-    { name: 'Carrinho', href: '#' },
+    { name: 'Carrinho', href: '/carrinho' },
   ],
 }
 
@@ -97,13 +97,13 @@ export default function Header({ props }: { props: HeaderProps }) {
         </Dialog>
       </Transition.Root>
 
-      <header className="fixed w-screen bg-white z-[1000]">
+      <header className="fixed w-full bg-white z-[1000]">
         <p className="flex h-10 items-center justify-center bg-amaranth px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           10% DE DESCONTO NO PIX
         </p>
 
-        <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="w-full h-20 border-b border-gray-200">
+        <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 border-b border-gray-200">
+            <div className="w-full h-20">
 
             <div className="h-full flex justify-center items-center">
                 <button
@@ -116,15 +116,27 @@ export default function Header({ props }: { props: HeaderProps }) {
                   <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                 </button>
 
-                <div className="ml-4 flex lg:ml-0">
+                <div className="pl-2 flex lg:pl-0">
                   <Link href="/">
                     <span className="sr-only">Your Company</span>
                     <img
-                      className="h-16 w-auto rounded-full"
-                      src="./LOGO.png"  
+                      className="h-16 w-16 rounded-full"
+                      src="/LOGO.png"  
                       alt=""
                       />
                   </Link>
+                </div>
+
+                <div className="hidden lg:flex justify-center items-center ml-6 gap-8">
+                  {navigation.pages.map((page) => (
+                    <Link
+                      key={page.name}
+                      href={page.href}
+                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800 hover:scale-105"
+                    >
+                      {page.name}
+                    </Link>
+                  ))}
                 </div>
 
               <div className="ml-auto flex items-center">
