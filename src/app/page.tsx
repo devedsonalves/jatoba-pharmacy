@@ -45,7 +45,7 @@ export default function HomePage() {
 
           <div className="flex justify-between items-center px-4 mb-12">
             <span className="text-2xl font-bold font-sans tracking-wide">💊 Ofertas da Semana</span>
-            <Link href="/produtos" className="hover:border-b hover:scale-105 border-black text-md sm:text-lg font-sans font-bold sm:font-semibold">Ver Tudo</Link>
+            <Link href="/produtos" className="hover:border-b hover:scale-105 border-black text-md sm:text-xl font-sans font-bold sm:font-semibold">Ver Tudo</Link>
           </div>
 
           <ListProducts products={products} />

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full mt-16 sm:mt-24 sm:grid sm:grid-cols-2 md:grid-cols-5 border-t border-gray-200 mx-auto max-w-7xl px-4 sm:px-6 lg:px-6">
+    <footer className="w-full mt-16 sm:mt-24 sm:grid sm:grid-cols-2 md:grid-cols-5 border-t border-gray-200 mx-auto max-w-7xl px-0 sm:px-6 lg:px-6">
       <div className="lg:col-span-2 h-full w-full flex justify-center items-center">
         <img
           src="https://scontent.fjdo1-2.fna.fbcdn.net/v/t1.6435-9/122885831_3502091099881234_53342234094039433_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEMJZJLv4emcMDpW6-Z5kWjtGNferejRBa0Y196t6NEFuM94CNF_KMKZ-1x1ZgeqFGobRomWfusKkDP9FylHvzZ&_nc_ohc=31lNRoSOwesQ7kNvgHtTwem&_nc_ht=scontent.fjdo1-2.fna&oh=00_AYC0casiiiBMhdV1_srA3guSsGLyVQLfgAMEg0cKFRoA2g&oe=66659E8E"

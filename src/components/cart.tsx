@@ -122,11 +122,12 @@ export default function Cart({ props }: { props: CartProps }) {
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Frete calculado ao finalizar compra</p>
                       <div className="mt-6">
-                        <button
+                        <Link
+                          href="/carrinho"
                           className="w-full flex items-center justify-center rounded-md border border-transparent bg-amaranth px-6 py-3 text-base font-bold text-white shadow-sm hover:bg-red-700"
                         >
                           Finalizar Compra
-                        </button>
+                        </Link>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>

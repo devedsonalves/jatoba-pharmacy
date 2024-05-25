@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import { FormEvent, Fragment, Suspense, useEffect, useState } from 'react'
+import { FormEvent, Fragment, Suspense, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChatBubbleOvalLeftEllipsisIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
@@ -345,9 +345,7 @@ export default function ProductsPage() {
                     </div>
                   )} 
 
-                  <section>
-                    <ListProducts products={productsData} />
-                  </section>
+                  <ListProducts products={productsData} />
                 </div>
               </div>
             </section>
