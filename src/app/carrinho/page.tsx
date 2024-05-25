@@ -93,13 +93,13 @@ export default function CartPage() {
                   <div className="w-full flex justify-end items-center gap-4 pt-4 mx-1">
                     <Link
                       href="/produtos"
-                      className="block rounded bg-zinc-200 px-5 py-3 text-sm text-black font-semibold tracking-wider transition hover:bg-zinc-300"
+                      className="block rounded bg-zinc-200 p-2 text-sm text-black font-semibold tracking-wider transition hover:bg-zinc-300"
                     >
                       Continuar comprando
                     </Link>
                     <Link
                       href="#"
-                      className="block rounded bg-amaranth px-5 py-3 text-sm text-gray-100 font-semibold tracking-wider transition hover:bg-red-600"
+                      className="block rounded bg-amaranth p-2 text-sm text-gray-100 font-semibold tracking-wider transition hover:bg-red-600"
                     >
                       Finalizar Pedido
                     </Link>
@@ -113,13 +113,13 @@ export default function CartPage() {
                   <div className="w-full flex justify-center items-center gap-4 pt-6 -m-2">
                     <Link
                       href="/produtos"
-                      className="block rounded bg-zinc-200 px-5 py-3 text-sm text-black font-semibold tracking-wider transition hover:bg-zinc-300"
+                      className="block rounded bg-zinc-200 p-2 text-sm text-black font-semibold tracking-wider transition hover:bg-zinc-300"
                     >
                       Continuar comprando
                     </Link>
                     <Link
                       href="#"
-                      className="block rounded bg-amaranth px-5 py-3 text-sm text-gray-100 font-semibold tracking-wider transition hover:bg-red-600"
+                      className="block rounded bg-amaranth p-2 text-sm text-gray-100 font-semibold tracking-wider transition hover:bg-red-600"
                     >
                       Finalizar Pedido
                     </Link>
