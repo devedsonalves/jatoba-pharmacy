@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Farmácia Jatobá
 
-## Getting Started
+Este é um projeto desenvolvido para a disciplina de Sistema de Informação da faculdade de Ciência da Computação. O projeto consiste em uma farmácia simples com as páginas: Inicial, Produtos e Carrinho. O website foi construído utilizando Next.js, Tailwind CSS, Radix UI, Shadcn UI e a biblioteca de gerenciamento de estados Zustand.
 
-First, run the development server:
+## URL de Produção
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+A aplicação está disponível em: [farmaciajatoba.vercel.app](https://farmaciajatoba.vercel.app)
+
+## Tecnologias Utilizadas
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Radix UI](https://www.radix-ui.com/)
+- [Shadcn UI](https://shadcn.dev/)
+- [Zustand](https://zustand-demo.pmnd.rs/)
+
+## Requisitos
+
+- Node.js v14.0 ou superior
+- npm v6.0 ou superior (ou yarn como alternativa)
+
+## Como Rodar o Projeto na Sua Máquina
+
+### Passo a Passo
+
+1. **Clone o repositório:**
+
+   ```bash
+   git clone https://github.com/devedsonalves/jatoba-pharmacy.git
+   cd jatoba-pharmacy
+   ```
+
+2. **Instale as dependências:**
+
+   Usando npm:
+   ```bash
+   npm install
+   ```
+
+   Ou usando yarn:
+   ```bash
+   yarn install
+   ```
+
+4. **Inicie o servidor de desenvolvimento:**
+
+   Usando npm:
+   ```bash
+   npm run dev
+   ```
+
+   Ou usando yarn:
+   ```bash
+   yarn dev
+   ```
+
+5. **Abra o navegador e acesse:**
+
+   ```
+   http://localhost:3000
+   ```
+
+## Estrutura do Projeto
+
+A estrutura básica do projeto é a seguinte:
+
+```
+.
+├── components        # Componentes React reutilizáveis
+├── pages             # Páginas da aplicação Next.js
+│   ├── _app.tsx      # Configuração do aplicativo
+│   ├── index.tsx     # Página inicial
+│   ├── products.tsx  # Página de produtos
+│   └── cart.tsx      # Página do carrinho
+├── public            # Arquivos estáticos
+├── styles            # Arquivos de estilos (CSS, Tailwind)
+├── store             # Arquivos relacionados ao Zustand
+│   └── store.ts      # Configuração do Zustand
+├── utils             # Utilitários e helpers
+├── .env.local        # Arquivo de variáveis de ambiente (não incluído)
+├── tsconfig.json     # Configuração do TypeScript
+├── tailwind.config.js # Configuração do Tailwind CSS
+├── package.json      # Dependências e scripts npm
+└── README.md         # Este arquivo
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Desenvolvimento
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para contribuir com este projeto, siga as etapas abaixo:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Crie um fork do repositório**
+2. **Crie uma branch para sua feature/bugfix:**
 
-## Learn More
+   ```bash
+   git checkout -b minha-feature
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Commit suas alterações:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git commit -m 'Minha nova feature'
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. **Envie para o repositório remoto:**
 
-## Deploy on Vercel
+   ```bash
+   git push origin minha-feature
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Abra um Pull Request**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Licença
+
+Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+Se você encontrar algum problema ou tiver sugestões de melhorias, por favor, abra uma issue ou contribua com um pull request.
