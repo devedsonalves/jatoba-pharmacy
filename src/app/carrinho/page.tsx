@@ -1,20 +1,27 @@
 "use client"
 
-import { Suspense, useState } from "react";
-
-import Loading from "@/components/loading";
-import { ProductInCartType } from "@/types/product-in-cart";
-import { useCartStore } from "@/store/cart-store";
-import formatCurrency from "@/utils/format-currency";
 import Link from "next/link";
+import { ChangeEvent, Suspense } from "react";
 import { TrashIcon } from "@radix-ui/react-icons";
 
+import Loading from "@/components/loading";
+import formatCurrency from "@/utils/format-currency";
+import { useCartStore } from "@/store/cart-store";
+import { ProductInCartType } from "@/types/product-in-cart";
+
 export default function CartPage() {
-  const { cart, totalPrice, removeToCart } = useCartStore()
+  const { cart, totalPrice, removeToCart, updateProductInCart } = useCartStore()
 
-  const [openMenu, setOpenMenu] = useState<boolean>(false)
-  const [openCart, setOpenCart] = useState<boolean>(false)
-
+  function handleAmountChange(event: ChangeEvent<HTMLInputElement>, product: ProductInCartType) {
+    event.preventDefault()
+    
+    const updatedProduct = {
+      ...product,
+      amount: Number(event.target.value)
+    }
+      
+    updateProductInCart(updatedProduct);
+  }
 
   return (
     <Suspense fallback={<Loading />}>
@@ -23,7 +30,7 @@ export default function CartPage() {
           <div className="mx-auto w-full max-w-screen-xl px-6 py-8 sm:px-6 sm:py-12 lg:px-8 flex flex-col justify-center items-center">
             <div className="w-full mx-auto max-w-3xl">
               <header className="text-center">
-                <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">Seu Carrinho <span className="pl-3">🛒</span></h1>
+                <h1 className="uppercase text-xl font-bold text-gray-900 sm:text-2xl">Seu Carrinho <span className="pl-3">🛒</span></h1>
               </header>
 
               {cart.length > 0 ? (
@@ -40,29 +47,26 @@ export default function CartPage() {
 
 
                           <div className="mt-0.5 space-y-px text-[10px] text-gray-600">
-                            <h3 className="text-sm text-gray-900">{product.name}</h3>
+                            <h3 className="text-sm font-medium text-gray-900">{product.name}</h3>
                             <span className="inline pr-2">Preço:</span>
                             <span className="inline">{formatCurrency(product.price , 'BRL')}</span>
                           </div>
 
 
                           <div className="flex flex-1 items-center justify-end gap-2">
-                            <form>
-                              <label htmlFor="Line3Qty" className="sr-only"> Quantity </label>
+                            <label className="sr-only"> Quantity </label>
 
-                              <input
-                                type="number"
-                                min="1"
-                                value={product.amount}
-                                id="Line3Qty"
-                                className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                              />
-                            </form>
-
+                            <input
+                              type="number"
+                              min={1}
+                              value={product.amount}
+                              onChange={(event) => handleAmountChange(event, product)}
+                              className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                            />
                             <button onClick={() => removeToCart(product)} className="text-gray-600 transition hover:text-red-600">
                               <span className="sr-only">Remove item</span>
 
-                              <TrashIcon className="h-4 w-4"/>
+                              <TrashIcon className="h-6 w-6"/>
                             </button>
                           </div>
                         </li>
@@ -108,7 +112,7 @@ export default function CartPage() {
               ) : (
                 <>
                   <div className='my-12 flex justify-center items-center text-lg'>
-                    <p>Nenhum produto no carrinho...</p>
+                    <p className="animate-pulse">Nenhum produto no carrinho...</p>
                   </div>
                   <div className="w-full flex justify-center items-center gap-4 pt-6 -m-2">
                     <Link

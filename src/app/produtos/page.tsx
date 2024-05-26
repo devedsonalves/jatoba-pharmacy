@@ -108,7 +108,7 @@ export default function ProductsPage() {
                   leaveFrom="translate-x-0"
                   leaveTo="translate-x-full"
                 >
-                  <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
+                  <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-hidden bg-white py-4 pb-12 shadow-xl">
                     <div className="flex items-center justify-between px-4">
                       <h2 className="text-lg font-medium text-gray-900">Filtros</h2>
                       <button
@@ -197,7 +197,7 @@ export default function ProductsPage() {
                         placeholder="O que está procurando?"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-64 sm:w-full rounded-lg border border-black pl-4 py-2.5 pe-10 text-xs sm:text-sm"
+                        className="w-80 sm:w-full rounded-xl border border-black pl-4 py-3 sm:py-2.5 pe-10 text-xs sm:text-sm"
                       />
 
                       <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
