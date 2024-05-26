@@ -60,30 +60,6 @@ A aplicação está disponível em: [farmaciajatoba.vercel.app](https://farmacia
    http://localhost:3000
    ```
 
-## Estrutura do Projeto
-
-A estrutura básica do projeto é a seguinte:
-
-```
-.
-├── components        # Componentes React reutilizáveis
-├── pages             # Páginas da aplicação Next.js
-│   ├── _app.tsx      # Configuração do aplicativo
-│   ├── index.tsx     # Página inicial
-│   ├── products.tsx  # Página de produtos
-│   └── cart.tsx      # Página do carrinho
-├── public            # Arquivos estáticos
-├── styles            # Arquivos de estilos (CSS, Tailwind)
-├── store             # Arquivos relacionados ao Zustand
-│   └── store.ts      # Configuração do Zustand
-├── utils             # Utilitários e helpers
-├── .env.local        # Arquivo de variáveis de ambiente (não incluído)
-├── tsconfig.json     # Configuração do TypeScript
-├── tailwind.config.js # Configuração do Tailwind CSS
-├── package.json      # Dependências e scripts npm
-└── README.md         # Este arquivo
-```
-
 ## Desenvolvimento
 
 Para contribuir com este projeto, siga as etapas abaixo:
