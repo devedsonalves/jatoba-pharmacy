@@ -6,8 +6,8 @@ type CartStore = {
   cart: ProductInCartType[]
   addToCart: (item: ProductInCartType) => void
   removeToCart: (item: ProductInCartType) => void
-  totalPrice: () => number
   updateProductInCart: (item: ProductInCartType) => void
+  totalPrice: () => number
 }
 
 export const useCartStore = create<CartStore>((set, get) => {
@@ -29,6 +29,13 @@ export const useCartStore = create<CartStore>((set, get) => {
     removeToCart: (item) => {
       set((state) => ({ cart: state.cart.filter((product) => product.id !== item.id) }))
     },
+    updateProductInCart: (item) =>
+      set((state) => {
+        const cart = state.cart.map((product) =>
+          product.id === item.id ? item : product
+      );
+      return { cart };
+    }),
     totalPrice: () => {
       const cartItems: ProductInCartType[] = get().cart
       let total = 0
@@ -37,12 +44,5 @@ export const useCartStore = create<CartStore>((set, get) => {
       })
       return total
     },
-    updateProductInCart: (item) =>
-      set((state) => {
-        const cart = state.cart.map((product) =>
-          product.id === item.id ? item : product
-        );
-        return { cart };
-      }),
   }
 })
